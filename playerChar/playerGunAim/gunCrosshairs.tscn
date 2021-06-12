@@ -3,9 +3,9 @@
 [ext_resource path="res://playerChar/playerGunAim/SeekPng.com_reticle-png_1578272.png" type="Texture" id=1]
 [ext_resource path="res://playerChar/playerGunAim/gunCrosshairs.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="playerGunAim" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Crosshairs" type="Sprite" parent="."]
 scale = Vector2( 0.103443, 0.103443 )
 texture = ExtResource( 1 )
