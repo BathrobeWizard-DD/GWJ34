@@ -21,8 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ#34"
-run/main_scene="res://GameLoop.tscn"
+run/main_scene="res://levels/main_menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Options="*res://src/options.gd"
 
 [gdnative]
 
@@ -92,6 +96,7 @@ click_rightbutton={
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/default_gravity=0
 
 [rendering]
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/options/back_main_menu_button.gd" type="Script" id=1]
+
+[node name="BackMainMenuButton" type="Button"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="." to="." method="_on_MainMenuButton_pressed"]
