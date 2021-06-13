@@ -12,8 +12,9 @@ func _input(event):
 		add_child(gunProjectile)
 		
 		gunProjectile.shootProjectile(
-			$playerChar.position,	# Where the projectile starts
-			$playerChar.position.direction_to(get_global_mouse_position())	# Where the projectile goes to.
+			$playerChar.position,
+			$playerChar.position.direction_to(get_global_mouse_position()),
+			$playerChar.currentVelocity
 		)
 
 # Called when the node enters the scene tree for the first time.

@@ -6,14 +6,22 @@ extends KinematicBody2D
 # var b = "text"
 var projSpeed = 500
 var projVelocity = Vector2.ZERO
+var angleThreshold = PI / 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func shootProjectile(startPos, directionVector):
+func shootProjectile(startPos, directionVector, shooterVelocity):
 	position = startPos
-	projVelocity = directionVector * projSpeed
+	
+	var angleBetweenShotandShooter = abs(directionVector.angle_to(shooterVelocity))
+	var additionalSpeed = 0
+	if (angleBetweenShotandShooter < angleThreshold):
+		additionalSpeed = directionVector.dot(shooterVelocity)
+	
+	var finalSpeed = projSpeed + additionalSpeed
+	projVelocity = directionVector * finalSpeed
 	rotation = directionVector.angle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
