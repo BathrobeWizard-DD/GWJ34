@@ -11,11 +11,11 @@ func _input(event):
 		var gunProjectile = gunProjectileScene.instance()
 		add_child(gunProjectile)
 		
-		gunProjectile.position = $playerChar.position
-		var projectileDirection = $playerChar.position.direction_to(get_global_mouse_position())
-		var projectileSpeed = 200
-		gunProjectile.projVelocity = (projectileDirection * projectileSpeed)
-		gunProjectile.rotation = projectileDirection.angle()
+		gunProjectile.shootProjectile(
+			$playerChar.position,
+			$playerChar.position.direction_to(get_global_mouse_position()),
+			$playerChar.currentVelocity
+		)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
