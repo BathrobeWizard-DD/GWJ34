@@ -1,0 +1,160 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://rope/RopePortion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://rope/Rope.gd" type="Script" id=2]
+
+[node name="Rope" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PinJoint2D16" type="PinJoint2D" parent="."]
+position = Vector2( 1, 0.1 )
+node_b = NodePath("../RigidBody2D")
+bias = 0.5
+softness = 0.1
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 1 )]
+mass = 0.2
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( 1, 4.1 )
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../RigidBody2D2")
+softness = 0.1
+
+[node name="RigidBody2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0.017, 4 )
+mass = 0.2
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2( 1, 8.1 )
+node_a = NodePath("../RigidBody2D2")
+node_b = NodePath("../RigidBody2D3")
+softness = 0.1
+
+[node name="RigidBody2D3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 8 )
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2( 1, 12.1 )
+node_a = NodePath("../RigidBody2D3")
+node_b = NodePath("../RigidBody2D4")
+
+[node name="RigidBody2D4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 12 )
+mass = 0.2
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2( 1, 16.1 )
+node_a = NodePath("../RigidBody2D4")
+node_b = NodePath("../RigidBody2D5")
+softness = 0.1
+
+[node name="RigidBody2D5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+mass = 0.2
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2( 1, 20.1 )
+node_a = NodePath("../RigidBody2D5")
+node_b = NodePath("../RigidBody2D6")
+softness = 0.1
+
+[node name="RigidBody2D6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 20 )
+mass = 0.2
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2( 1, 24.1 )
+node_a = NodePath("../RigidBody2D6")
+node_b = NodePath("../RigidBody2D7")
+softness = 0.1
+
+[node name="RigidBody2D7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 24 )
+mass = 0.2
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2( 1, 28.1 )
+node_a = NodePath("../RigidBody2D7")
+node_b = NodePath("../RigidBody2D8")
+softness = 0.1
+
+[node name="RigidBody2D8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 28 )
+mass = 0.2
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="."]
+position = Vector2( 1, 32.1 )
+node_a = NodePath("../RigidBody2D8")
+node_b = NodePath("../RigidBody2D9")
+softness = 0.1
+
+[node name="RigidBody2D9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 32 )
+mass = 0.2
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="."]
+position = Vector2( 1, 36.1 )
+node_a = NodePath("../RigidBody2D9")
+node_b = NodePath("../RigidBody2D10")
+softness = 0.1
+
+[node name="RigidBody2D10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 36 )
+mass = 0.2
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="."]
+position = Vector2( 1, 40.1 )
+node_a = NodePath("../RigidBody2D10")
+node_b = NodePath("../RigidBody2D11")
+softness = 0.1
+
+[node name="RigidBody2D11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 40 )
+mass = 0.2
+
+[node name="PinJoint2D11" type="PinJoint2D" parent="."]
+position = Vector2( 1, 44.1 )
+node_a = NodePath("../RigidBody2D11")
+node_b = NodePath("../RigidBody2D12")
+softness = 0.1
+
+[node name="RigidBody2D12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 44 )
+mass = 0.2
+
+[node name="PinJoint2D12" type="PinJoint2D" parent="."]
+position = Vector2( 1, 48.1 )
+node_a = NodePath("../RigidBody2D12")
+node_b = NodePath("../RigidBody2D13")
+softness = 0.1
+
+[node name="RigidBody2D13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0.017, 48 )
+mass = 0.2
+
+[node name="PinJoint2D13" type="PinJoint2D" parent="."]
+position = Vector2( 1, 52.1 )
+node_a = NodePath("../RigidBody2D13")
+node_b = NodePath("../RigidBody2D14")
+softness = 0.1
+
+[node name="RigidBody2D14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 52 )
+mass = 0.2
+
+[node name="PinJoint2D14" type="PinJoint2D" parent="."]
+position = Vector2( 1, 56.1 )
+node_a = NodePath("../RigidBody2D14")
+node_b = NodePath("../RigidBody2D15")
+softness = 0.1
+
+[node name="RigidBody2D15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 56 )
+mass = 0.2
+
+[node name="PinJoint2D15" type="PinJoint2D" parent="."]
+position = Vector2( 1, 60 )
+node_a = NodePath("../RigidBody2D15")
+bias = 0.5
+softness = 0.1
