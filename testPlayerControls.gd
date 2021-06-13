@@ -14,7 +14,7 @@ func _input(event):
 		gunProjectile.shootProjectile(
 			$playerChar.position,
 			$playerChar.position.direction_to(get_global_mouse_position()),
-			$playerChar.currentVelocity
+			$playerChar.get_linear_velocity()
 		)
 
 # Called when the node enters the scene tree for the first time.

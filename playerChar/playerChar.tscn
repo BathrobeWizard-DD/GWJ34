@@ -5,7 +5,8 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 
-[node name="playerChar" type="KinematicBody2D"]
+[node name="playerChar" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
