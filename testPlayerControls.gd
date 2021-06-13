@@ -19,9 +19,9 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	var ropeOne = get_node("RopeSegOne")
+	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
+	ropeOne.set_top_pin(get_node("StaticBody2D"))
+	ropeOne.set_bottom_pin(ropeTwo.get_node("RigidBody2D"))
+	#ropeTwo.set_top_pin(ropeOne.get_node("RigidBody2D15"))
+	ropeTwo.set_bottom_pin(get_node("playerChar"))
