@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://playerChar/Ear.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/ear_piece.png" type="Texture" id=3]
+
+[node name="PlayerSprite" type="Node2D"]
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="RightEar" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4, -6 )
+
+[node name="LeftEar" parent="." instance=ExtResource( 2 )]
+position = Vector2( -4, -6 )
+
+[node name="ear_piece2" type="Sprite" parent="."]
+texture = ExtResource( 3 )
