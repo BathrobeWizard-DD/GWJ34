@@ -1,7 +1,17 @@
-# Import cache
+# Godot-specific ignores
+.godot/
 .import/
+export.cfg
+export_presets.cfg
 
-# Binaries
-bin/
-build/
-lib/
+# Mono-specific ignores
+.mono/
+.vs/
+obj/
+
+# Visual Studio Code - specific ignores
+.vscode
+
+# Linux-specific ignores (Dolphin)
+.directory
+*.import
