@@ -26,7 +26,6 @@ func _process(_delta):
 		points[i][1] = to_global(position + Vector2(0, -i * offset))
 		if points[i][0].distance_to(points[i][1]) > 6:
 			points[i][0].linear_interpolate(points[i][1], .2)
-			print("BIG")
 
 	update()
 	pass

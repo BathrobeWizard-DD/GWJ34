@@ -30,7 +30,6 @@ func _process(_delta):
 			if dist < record_d:
 				record_i = i
 				record_d = dist
-#		ear.rotation = movedir.angle() - PI / 2
 		head.frame = record_i
 		body.frame = record_i
 	
