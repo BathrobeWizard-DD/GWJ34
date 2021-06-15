@@ -22,7 +22,7 @@ func _process(_delta):
 			points[i][0] = points[i][1]
 			points[i][1] = to_global(position + Vector2(0, -i * offset))
 			continue
-		points[i][0] = points[i][1] + (points[i - 1][0] - points[i - 1][1])
+		points[i][0] = points[i][1] + (points[i - 1][0] - points[i - 1][1]).clamped(20)
 		points[i][1] = to_global(position + Vector2(0, -i * offset))
 		if points[i][0].distance_to(points[i][1]) > 6:
 			points[i][0].linear_interpolate(points[i][1], .2)

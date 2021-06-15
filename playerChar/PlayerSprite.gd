@@ -1,7 +1,9 @@
 extends Node2D
 
-onready var sprite = $Body
+onready var body = $Body
+onready var head = $Head
 onready var ear = $RightEar
+onready var gun = $Gun
 
 onready var previous_pos = Vector2.ZERO
 
@@ -29,4 +31,10 @@ func _process(_delta):
 				record_i = i
 				record_d = dist
 #		ear.rotation = movedir.angle() - PI / 2
-		sprite.frame = record_i
+		head.frame = record_i
+		body.frame = record_i
+	
+	var gun_angle = (get_global_mouse_position() - global_position).angle()
+#	print(rad2deg(gun_angle))
+	gun.rotation = gun_angle
+	gun.flip_v = gun_angle > PI/2 || gun_angle < -PI/2
