@@ -21,4 +21,3 @@ shape = SubResource( 1 )
 [node name="PlayerSprite" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
