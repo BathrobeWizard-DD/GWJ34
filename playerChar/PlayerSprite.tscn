@@ -1,20 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/player.png" type="Texture" id=1]
 [ext_resource path="res://playerChar/Ear.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/ear_piece.png" type="Texture" id=3]
+[ext_resource path="res://playerChar/PlayerSprite.gd" type="Script" id=4]
+
+[sub_resource type="AnimationNodeStateMachine" id=1]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
 [node name="PlayerSprite" type="Node2D"]
+z_index = 10
+script = ExtResource( 4 )
+
+[node name="RightEar" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2, -2 )
+piece_size = 2
+
+[node name="Ear" parent="." instance=ExtResource( 2 )]
+position = Vector2( -2, -2 )
+piece_size = 2
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 8
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="RightEar" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4, -6 )
-
-[node name="LeftEar" parent="." instance=ExtResource( 2 )]
-position = Vector2( -4, -6 )
-
-[node name="ear_piece2" type="Sprite" parent="."]
+[node name="overlay" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 1 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
