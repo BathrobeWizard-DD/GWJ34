@@ -13,7 +13,7 @@ script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
-position = Vector2( 317.696, 300.04 )
+position = Vector2( 316.902, 294.08 )
 collision_layer = 0
 collision_mask = 0
 
