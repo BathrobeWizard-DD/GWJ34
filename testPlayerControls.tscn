@@ -8,7 +8,7 @@
 [ext_resource path="res://debris/mediumDebris.tscn" type="PackedScene" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, 0, 640, 368, 0, 0, 0, 0, 0, 368, 0, 0, 0, 0, 0, 0 )
 }
@@ -18,15 +18,17 @@ script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 debrisScene = ExtResource( 6 )
 
+[node name="centerSatellite" parent="." groups=[
+"centerSatellite",
+] instance=ExtResource( 7 )]
+position = Vector2( 317.375, 168.982 )
+
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 316.902, 294.08 )
 collision_layer = 0
 collision_mask = 0
 
 [node name="playerGunAim" parent="." instance=ExtResource( 3 )]
-
-[node name="centerSatellite" parent="." instance=ExtResource( 7 )]
-position = Vector2( 317.375, 168.982 )
 
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
 position = Vector2( 315.931, 171.861 )
@@ -35,7 +37,7 @@ position = Vector2( 315.931, 171.861 )
 position = Vector2( 0.0471802, 59.857 )
 
 [node name="debrisPath" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 
 [node name="debrisSpawnLocation" type="PathFollow2D" parent="debrisPath"]
 
