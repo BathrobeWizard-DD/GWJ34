@@ -22,7 +22,7 @@ func _input(event):
 func _ready():
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
-	ropeOne.set_top_pin(get_node("StaticBody2D"))
+	ropeOne.set_top_pin(get_node("centerSatellite/StaticBody2D"))
 	ropeOne.set_bottom_pin(ropeTwo.get_node("RigidBody2D"))
 	#ropeTwo.set_top_pin(ropeOne.get_node("RigidBody2D15"))
 	ropeTwo.set_bottom_pin(get_node("playerChar"))

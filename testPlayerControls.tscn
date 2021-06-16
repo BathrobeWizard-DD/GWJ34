@@ -6,8 +6,7 @@
 [ext_resource path="res://testPlayerControls.gd" type="Script" id=4]
 [ext_resource path="res://rope/Rope.tscn" type="PackedScene" id=5]
 [ext_resource path="res://debris/mediumDebris.tscn" type="PackedScene" id=6]
-
-[sub_resource type="CircleShape2D" id=1]
+[ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=2]
 _data = {
@@ -26,11 +25,8 @@ collision_mask = 0
 
 [node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="centerSatellite" parent="." instance=ExtResource( 7 )]
 position = Vector2( 317.375, 168.982 )
-shape = SubResource( 1 )
 
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
 position = Vector2( 315.931, 171.861 )
