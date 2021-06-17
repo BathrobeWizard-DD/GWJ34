@@ -19,5 +19,6 @@ accelerationScalar = 25
 shape = SubResource( 1 )
 
 [node name="PlayerSprite" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 1.5, 1.5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

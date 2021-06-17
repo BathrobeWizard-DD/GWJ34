@@ -18,23 +18,23 @@ script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 debrisScene = ExtResource( 6 )
 
-[node name="centerSatellite" parent="." groups=[
-"centerSatellite",
-] instance=ExtResource( 7 )]
-position = Vector2( 317.375, 168.982 )
-
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
-position = Vector2( 316.902, 294.08 )
+position = Vector2( 317, 294 )
 collision_layer = 0
 collision_mask = 0
 
 [node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
-position = Vector2( 315.931, 171.861 )
+position = Vector2( 316, 172 )
 
 [node name="RopeSegTwo" parent="RopeSegOne" instance=ExtResource( 5 )]
 position = Vector2( 0.0471802, 59.857 )
+
+[node name="centerSatellite" parent="." groups=[
+"centerSatellite",
+] instance=ExtResource( 7 )]
+position = Vector2( 316, 172 )
 
 [node name="debrisPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
