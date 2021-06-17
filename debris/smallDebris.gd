@@ -30,9 +30,7 @@ func _ready():
 	add_to_group("smallDebris")
 	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
 	var chosen_frame_number = (randi() % frame_count)
-	
 	var extents_properties = collisionExtents[chosen_frame_number]
-	
 	$AnimatedSprite.set_frame(chosen_frame_number)
 	$CollisionShape2D.shape.set_extents(extents_properties)
 

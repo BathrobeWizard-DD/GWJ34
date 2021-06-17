@@ -51,7 +51,8 @@ func _on_debris_hit_by_projectile(projVelocity):
 	var angleToProjVelocity = linear_velocity.angle_to(projVelocity)
 	
 	var smallDebrisPiece = smallDebrisScene.instance()
+	smallDebrisPiece.position = position
 	smallDebrisPiece.linear_velocity = (projVelocity / 2)
-	add_child(smallDebrisPiece)
+	get_node("/root/Node2D").add_child(smallDebrisPiece)
 	
 	queue_free()
