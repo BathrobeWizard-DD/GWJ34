@@ -3,6 +3,8 @@ extends RigidBody2D
 export var min_speed = 150.0
 export var max_speed = 250.0
 
+export (PackedScene) var smallDebrisScene
+
 signal hit_by_projectile
 
 var collisionExtents = [
@@ -44,6 +46,12 @@ func _on_debris_body_entered(body):
 	print(body)
 
 
-func _on_debris_hit_by_projectile():
+func _on_debris_hit_by_projectile(projVelocity):
+	# spawn the small debris.
+	var angleToProjVelocity = linear_velocity.angle_to(projVelocity)
+	
+	var smallDebrisPiece = smallDebrisScene.instance()
+	smallDebrisPiece.linear_velocity = (projVelocity / 2)
+	add_child(smallDebrisPiece)
+	
 	queue_free()
-	pass # Replace with function body.

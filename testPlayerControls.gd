@@ -3,6 +3,8 @@ extends Node2D
 export (PackedScene) var gunProjectileScene
 export (PackedScene) var debrisScene
 
+signal spawn_small_debris
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -44,3 +46,8 @@ func _on_debrisSpawnTimer_timeout():
 	
 	var velocity = Vector2(rand_range(debrisPiece.min_speed, debrisPiece.max_speed), 0)
 	debrisPiece.linear_velocity = velocity.rotated(angle)
+
+
+func _on_Node2D_spawn_small_debris():
+	print("Small debris shoould be spawned.")
+	pass # Replace with function body.

@@ -23,8 +23,6 @@ position = Vector2( 317, 294 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
-
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
 position = Vector2( 316, 172 )
 
@@ -36,6 +34,8 @@ position = Vector2( 0.0471802, 59.857 )
 ] instance=ExtResource( 7 )]
 position = Vector2( 316, 172 )
 
+[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
+
 [node name="debrisPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
@@ -44,4 +44,7 @@ curve = SubResource( 1 )
 [node name="debrisSpawnTimer" type="Timer" parent="."]
 wait_time = 1.8
 
+[node name="smallDebrisSpawner" type="Node2D" parent="."]
+
+[connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
 [connection signal="timeout" from="debrisSpawnTimer" to="." method="_on_debrisSpawnTimer_timeout"]

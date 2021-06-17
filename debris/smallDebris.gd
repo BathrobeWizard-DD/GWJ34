@@ -27,7 +27,7 @@ var collisionExtents = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	add_to_group("mediumDebris")
+	add_to_group("smallDebris")
 	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
 	var chosen_frame_number = (randi() % frame_count)
 	
