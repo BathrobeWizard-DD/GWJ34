@@ -22,7 +22,8 @@ var collisionExtents = [
 func _ready():
 	randomize()
 	add_to_group("mediumDebris")
-	var chosen_frame_number = (randi() % 6)
+	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
+	var chosen_frame_number = (randi() % frame_count)
 	
 	var extents_properties = collisionExtents[chosen_frame_number]
 	
@@ -40,7 +41,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_debris_body_entered(body):
-	print("Something has entered debris's body:")
 	print(body)
 
 
