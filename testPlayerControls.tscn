@@ -1,29 +1,21 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://playerChar/playerGunAim/gunCrosshairs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://testPlayerControls.gd" type="Script" id=4]
 [ext_resource path="res://rope/Rope.tscn" type="PackedScene" id=5]
-[ext_resource path="res://debris/mediumDebris.tscn" type="PackedScene" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
-
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, 0, 640, 368, 0, 0, 0, 0, 0, 368, 0, 0, 0, 0, 0, 0 )
-}
+[ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
-debrisScene = ExtResource( 6 )
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 317, 294 )
 collision_layer = 0
 collision_mask = 0
-
-[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
 position = Vector2( 316, 172 )
@@ -36,12 +28,10 @@ position = Vector2( 0.0471802, 59.857 )
 ] instance=ExtResource( 7 )]
 position = Vector2( 316, 172 )
 
-[node name="debrisPath" type="Path2D" parent="."]
-curve = SubResource( 1 )
+[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
-[node name="debrisSpawnLocation" type="PathFollow2D" parent="debrisPath"]
+[node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
 
-[node name="debrisSpawnTimer" type="Timer" parent="."]
-wait_time = 1.8
+[node name="smallDebrisSpawner" type="Node2D" parent="."]
 
-[connection signal="timeout" from="debrisSpawnTimer" to="." method="_on_debrisSpawnTimer_timeout"]
+[connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
