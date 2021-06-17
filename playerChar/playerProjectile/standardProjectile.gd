@@ -37,5 +37,3 @@ func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris")):
 		body.emit_signal("hit_by_projectile")
 		queue_free()
-	elif (body.is_in_group("centerSatellite")):
-		queue_free()
