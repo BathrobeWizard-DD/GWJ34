@@ -32,7 +32,6 @@ func _ready():
 	$AnimatedSprite.set_frame(chosen_frame_number)
 	$CollisionShape2D.shape.set_extents(extents_properties)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -44,14 +43,20 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	pass
+
+func spawn_small_debris(inputVelocity):
+	var smallDebrisPiece = smallDebrisScene.instance()
+	smallDebrisPiece.position = position + inputVelocity.normalized()
+	smallDebrisPiece.linear_velocity = inputVelocity.clamped(max_speed)
 	
+	get_node("/root/Node2D").add_child(smallDebrisPiece)
+
 func _on_debris_hit_by_projectile(projVelocity):
 	# spawn the small debris.
 	var angleToProjVelocity = -(linear_velocity.angle_to(projVelocity))
 	
-	var smallDebrisPiece = smallDebrisScene.instance()
-	smallDebrisPiece.position = position
-	smallDebrisPiece.linear_velocity = (projVelocity * 0.3).clamped(max_speed)
-	get_node("/root/Node2D").add_child(smallDebrisPiece)
+	spawn_small_debris((projVelocity * 0.2).rotated(-PI/6))
+	spawn_small_debris((projVelocity * 0.2))
+	spawn_small_debris((projVelocity * 0.2).rotated(PI/6))
 	
 	queue_free()
