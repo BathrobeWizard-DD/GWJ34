@@ -34,8 +34,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 	pass # Replace with function body.
 
 func _on_Area2D_body_entered(body):
-	if (body.is_in_group("mediumDebris")):
-		body.emit_signal("hit_by_projectile")
-		queue_free()
-	elif (body.is_in_group("centerSatellite")):
+	if (body.is_in_group("mediumDebris") or body.is_in_group("smallDebris")):
+		body.emit_signal("hit_by_projectile", projVelocity)
 		queue_free()

@@ -3,6 +3,8 @@ extends RigidBody2D
 export var min_speed = 150.0
 export var max_speed = 250.0
 
+export (PackedScene) var smallDebrisScene
+
 signal hit_by_projectile
 
 var collisionExtents = [
@@ -22,13 +24,13 @@ var collisionExtents = [
 func _ready():
 	randomize()
 	add_to_group("mediumDebris")
-	var chosen_frame_number = (randi() % 6)
+	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
+	var chosen_frame_number = (randi() % frame_count)
 	
-	var extents_properties = collisionExtents[chosen_frame_number]
+	var extents_properties = collisionExtents[chosen_frame_number] * 1.5
 	
 	$AnimatedSprite.set_frame(chosen_frame_number)
 	$CollisionShape2D.shape.set_extents(extents_properties)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -40,10 +42,21 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_debris_body_entered(body):
-	print("Something has entered debris's body:")
-	print(body)
+	pass
 
+func spawn_small_debris(inputVelocity):
+	var smallDebrisPiece = smallDebrisScene.instance()
+	smallDebrisPiece.position = position + inputVelocity.normalized()
+	smallDebrisPiece.linear_velocity = inputVelocity.clamped(max_speed)
+	
+	get_node("/root/Node2D").call_deferred("add_child" ,smallDebrisPiece)
 
-func _on_debris_hit_by_projectile():
+func _on_debris_hit_by_projectile(projVelocity):
+	# spawn the small debris.
+	var angleToProjVelocity = -(linear_velocity.angle_to(projVelocity))
+	
+	spawn_small_debris((projVelocity * 0.2).rotated(-PI/6))
+	spawn_small_debris((projVelocity * 0.2))
+	spawn_small_debris((projVelocity * 0.2).rotated(PI/6))
+	
 	queue_free()
-	pass # Replace with function body.

@@ -14,10 +14,10 @@ script = ExtResource( 4 )
 rotation = -1.74846e-07
 
 [node name="LeftEar" parent="Ears" instance=ExtResource( 2 )]
-position = Vector2( -2, -2 )
+position = Vector2( -2, -3 )
 
 [node name="RightEar" parent="Ears" instance=ExtResource( 2 )]
-position = Vector2( 2, -2 )
+position = Vector2( 3, -3 )
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -33,3 +33,6 @@ offset = Vector2( 12, 0 )
 [node name="Head" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 8
+__meta__ = {
+"_edit_lock_": true
+}

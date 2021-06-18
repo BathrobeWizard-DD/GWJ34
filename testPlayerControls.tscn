@@ -5,28 +5,31 @@
 [ext_resource path="res://playerChar/playerGunAim/gunCrosshairs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://testPlayerControls.gd" type="Script" id=4]
 [ext_resource path="res://rope/Rope.tscn" type="PackedScene" id=5]
-[ext_resource path="res://debris/mediumDebris.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/background.png" type="Texture" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
-
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, 0, 640, 368, 0, 0, 0, 0, 0, 368, 0, 0, 0, 0, 0, 0 )
-}
+[ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
-debrisScene = ExtResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 512.0
+margin_bottom = 512.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
-position = Vector2( 317, 294 )
+position = Vector2( 256, 381 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
-
 [node name="RopeSegOne" parent="." instance=ExtResource( 5 )]
-position = Vector2( 316, 172 )
+position = Vector2( 256, 256 )
 
 [node name="RopeSegTwo" parent="RopeSegOne" instance=ExtResource( 5 )]
 position = Vector2( 0.0471802, 59.857 )
@@ -34,14 +37,12 @@ position = Vector2( 0.0471802, 59.857 )
 [node name="centerSatellite" parent="." groups=[
 "centerSatellite",
 ] instance=ExtResource( 7 )]
-position = Vector2( 316, 172 )
+position = Vector2( 256, 256 )
 
-[node name="debrisPath" type="Path2D" parent="."]
-curve = SubResource( 1 )
+[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
-[node name="debrisSpawnLocation" type="PathFollow2D" parent="debrisPath"]
+[node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
 
-[node name="debrisSpawnTimer" type="Timer" parent="."]
-wait_time = 1.8
+[node name="smallDebrisSpawner" type="Node2D" parent="."]
 
-[connection signal="timeout" from="debrisSpawnTimer" to="." method="_on_debrisSpawnTimer_timeout"]
+[connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
