@@ -47,13 +47,14 @@ script = ExtResource( 1 )
 smallDebrisScene = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 8 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-scale = Vector2( 1.72385, 1.32295 )
+scale = Vector2( 3.06135, 2.6869 )
 
 [connection signal="body_entered" from="." to="." method="_on_debris_body_entered"]
 [connection signal="hit_by_projectile" from="." to="." method="_on_debris_hit_by_projectile"]
