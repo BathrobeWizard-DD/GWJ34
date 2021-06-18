@@ -29,5 +29,4 @@ func _ready():
 	ropeTwo.set_bottom_pin(get_node("playerChar"))
 
 func _on_Node2D_spawn_small_debris():
-	print("Small debris shoould be spawned.")
 	pass # Replace with function body.

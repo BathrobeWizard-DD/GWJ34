@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sprites/satellite.png" type="Texture" id=1]
 [ext_resource path="res://centerSatellite/centerSatellite.gd" type="Script" id=2]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.97371, 64.9606 )
+
 [node name="centerSatellite" type="StaticBody2D"]
 script = ExtResource( 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, -72, 5.21689, -63.4741, 29.2983, -56.0416, 19.19, -24, 19.19, 8, 11.1629, 7.58091, 10.271, 23.6352, 11.4602, 62.5817, 4.91959, 65.5547, 5.51419, 73.2845, -3.99945, 72.9872, -5.18866, 64.3655, -10.8374, 62.5817, -12.0266, 24, -12.0266, 8.17551, -20.6483, 8, -20.6483, -24, -29.5674, -57.2308, -3.99945, -63.7714 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5.35142 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
