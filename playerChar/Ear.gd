@@ -29,11 +29,11 @@ func _process(_delta):
 
 func _draw():
 #	# outline color
-	draw_line(position, to_local(points.back()[0]), Color("363332"), 6)
-	draw_circle(to_local(points.back()[0]), 3, Color("363332"))
+	draw_line(position, to_local(points.back()[0]), Color("363332"), 8)
+	draw_circle(to_local(points.back()[0]), 5, Color("363332"))
 #	# suit color
-	draw_line(position, to_local(points.back()[0]), Color("cbdbfc"), 5)
-	draw_circle(to_local(points.back()[0]), 2, Color("cbdbfc"))
+	draw_line(position, to_local(points.back()[0]), Color("cbdbfc"), 7)
+	draw_circle(to_local(points.back()[0]), 4, Color("cbdbfc"))
 #	# skin color
-	draw_line(position, to_local(points.back()[0]), Color("f17bcc"), 2)
+	draw_line(position, to_local(points.back()[0]), Color("f17bcc"), 3)
 
