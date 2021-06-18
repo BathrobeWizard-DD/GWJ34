@@ -49,7 +49,7 @@ func spawn_small_debris(inputVelocity):
 	smallDebrisPiece.position = position + inputVelocity.normalized()
 	smallDebrisPiece.linear_velocity = inputVelocity.clamped(max_speed)
 	
-	get_node("/root/Node2D").add_child(smallDebrisPiece)
+	get_node("/root/Node2D").call_deferred("add_child" ,smallDebrisPiece)
 
 func _on_debris_hit_by_projectile(projVelocity):
 	# spawn the small debris.
