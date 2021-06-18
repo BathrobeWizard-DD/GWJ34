@@ -3,17 +3,21 @@ extends RigidBody2D
 export var min_speed = 150.0
 export var max_speed = 250.0
 
-export (PackedScene) var smallDebrisScene
-
 signal hit_by_projectile
 
 var collisionExtents = [
-	Vector2(11.9, 9.985),
-	Vector2(11.9, 9.985),
-	Vector2(8.114, 6.421),
-	Vector2(10.564, 8.537),
-	Vector2(10.564, 8.537),
-	Vector2(11.232, 11.321)
+	Vector2(10.489, 9.626),
+	Vector2(10.155, 7.29),
+	Vector2(8.319, 7.123),
+	Vector2(6.15, 12.129),
+	Vector2(9.487, 4.954),
+	Vector2(5.316, 3.619),
+	Vector2(7.652, 5.789),
+	Vector2(7.819, 6.122),
+	Vector2(11.657, 8.959),
+	Vector2(8.987, 6.289),
+	Vector2(8.82, 5.288),
+	Vector2(8.82, 5.288),
 ]
 
 # Declare member variables here. Examples:
@@ -23,12 +27,10 @@ var collisionExtents = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	add_to_group("mediumDebris")
+	add_to_group("smallDebris")
 	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
 	var chosen_frame_number = (randi() % frame_count)
-	
 	var extents_properties = collisionExtents[chosen_frame_number]
-	
 	$AnimatedSprite.set_frame(chosen_frame_number)
 	$CollisionShape2D.shape.set_extents(extents_properties)
 
@@ -44,14 +46,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	pass
-	
+
+
 func _on_debris_hit_by_projectile(projVelocity):
-	# spawn the small debris.
-	var angleToProjVelocity = linear_velocity.angle_to(projVelocity)
-	
-	var smallDebrisPiece = smallDebrisScene.instance()
-	smallDebrisPiece.position = position
-	smallDebrisPiece.linear_velocity = (projVelocity / 2)
-	get_node("/root/Node2D").add_child(smallDebrisPiece)
-	
 	queue_free()
+	pass # Replace with function body.
