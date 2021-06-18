@@ -48,6 +48,6 @@ func _on_debris_body_entered(body):
 	print(body)
 
 
-func _on_debris_hit_by_projectile():
+func _on_debris_hit_by_projectile(projVelocity):
 	queue_free()
 	pass # Replace with function body.
