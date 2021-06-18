@@ -37,6 +37,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=8]
+resource_local_to_scene = true
 extents = Vector2( 11.2318, 11.3211 )
 
 [node name="mediumDebris" type="RigidBody2D"]
