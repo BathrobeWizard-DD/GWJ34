@@ -44,8 +44,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	print(body)
-
-
+	
 func _on_debris_hit_by_projectile(projVelocity):
 	# spawn the small debris.
 	var angleToProjVelocity = linear_velocity.angle_to(projVelocity)

@@ -30,4 +30,3 @@ func _ready():
 
 func _on_Node2D_spawn_small_debris():
 	print("Small debris shoould be spawned.")
-	pass # Replace with function body.
