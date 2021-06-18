@@ -20,8 +20,8 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 580.0
+margin_right = 492.0
+margin_bottom = 492.0
 custom_constants/separation = 20
 
 [node name="BackMainMenuButton" parent="HBoxContainer" instance=ExtResource( 4 )]
@@ -35,12 +35,12 @@ text = "Back"
 [node name="HotkeysContainer" type="HBoxContainer" parent="HBoxContainer"]
 margin_left = 62.0
 margin_right = 297.0
-margin_bottom = 560.0
+margin_bottom = 472.0
 custom_constants/separation = 80
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/HotkeysContainer"]
 margin_right = 235.0
-margin_bottom = 560.0
+margin_bottom = 472.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 2
@@ -152,7 +152,7 @@ action = "click_leftbutton"
 [node name="VolumeSlidersContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 317.0
 margin_right = 416.0
-margin_bottom = 560.0
+margin_bottom = 472.0
 
 [node name="MasterVolume" type="VBoxContainer" parent="HBoxContainer/VolumeSlidersContainer"]
 margin_right = 99.0
