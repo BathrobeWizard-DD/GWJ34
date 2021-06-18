@@ -47,11 +47,11 @@ func _on_debris_body_entered(body):
 	
 func _on_debris_hit_by_projectile(projVelocity):
 	# spawn the small debris.
-	var angleToProjVelocity = linear_velocity.angle_to(projVelocity)
+	var angleToProjVelocity = -(linear_velocity.angle_to(projVelocity))
 	
 	var smallDebrisPiece = smallDebrisScene.instance()
 	smallDebrisPiece.position = position
-	smallDebrisPiece.linear_velocity = (projVelocity / 2)
+	smallDebrisPiece.linear_velocity = (projVelocity * 0.3).clamped(max_speed)
 	get_node("/root/Node2D").add_child(smallDebrisPiece)
 	
 	queue_free()
