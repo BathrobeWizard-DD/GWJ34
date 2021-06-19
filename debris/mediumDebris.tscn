@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://debris/mediumDebris.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/debris/debris_middle_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://debris/smallDebris.tscn" type="PackedScene" id=3]
+[ext_resource path="res://debris/debrisPhysicsMaterial.tres" type="PhysicsMaterial" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -43,6 +44,7 @@ extents = Vector2( 11.2318, 11.3211 )
 [node name="mediumDebris" type="RigidBody2D"]
 collision_layer = 3
 collision_mask = 3
+physics_material_override = ExtResource( 4 )
 script = ExtResource( 1 )
 smallDebrisScene = ExtResource( 3 )
 
