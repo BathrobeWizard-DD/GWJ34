@@ -36,7 +36,7 @@ func _ready():
 func _destroy():
 	$AnimatedSprite.visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
-	$Particles2D.set_emitting(true)
+	$DebrisExplosion.set_emitting(true)
 	$DestroySound.play()
 
 
@@ -46,7 +46,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
-		body.emit_signal("hit_by_debris", "small")
+		body.emit_signal("hit_by_debris", 2)
 		_destroy()
 
 

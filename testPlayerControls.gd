@@ -11,18 +11,24 @@ onready var _shoot_sound = $ShootSound
 
 
 func _input(event):
-	if event.is_action_pressed("click_leftbutton"):
+	pass
+
+func playerFireGun():
+	if ($playerChar.readyToShoot):
 		var gunProjectile = gunProjectileScene.instance()
-		add_child(gunProjectile)
-		
+		call_deferred('add_child', gunProjectile)
 		gunProjectile.shootProjectile(
 			$playerChar.position,
 			$playerChar.position.direction_to(get_global_mouse_position()),
 			$playerChar.get_linear_velocity()
 		)
-		
 		_shoot_sound.set_pitch_scale(1 + _random.randf_range(-PITCH_SCALE_DIFFERENCE, PITCH_SCALE_DIFFERENCE))
 		_shoot_sound.play()
+		$playerChar.emit_signal("firedProjectile")
+
+func _process(delta):
+	if Input.is_action_pressed("click_leftbutton"):
+		playerFireGun()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

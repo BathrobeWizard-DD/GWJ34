@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://debris/smallDebris.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/debris/debris_small_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://debris/debrisPhysicsMaterial.tres" type="PhysicsMaterial" id=3]
 [ext_resource path="res://assets/sounds/explosion_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://debris/DebrisExplosion.tscn" type="PackedScene" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -61,23 +62,6 @@ animations = [ {
 resource_local_to_scene = true
 extents = Vector2( 8.31946, 7.12343 )
 
-[sub_resource type="Gradient" id=14]
-colors = PoolColorArray( 1, 0.580392, 0.262745, 1, 0.996078, 0.980392, 0.752941, 1 )
-
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 14 )
-
-[sub_resource type="ParticlesMaterial" id=16]
-emission_shape = 1
-emission_sphere_radius = 1.0
-flag_disable_z = true
-spread = 165.63
-initial_velocity = 60.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 6.0
-color_ramp = SubResource( 17 )
-
 [node name="smallDebris" type="RigidBody2D"]
 collision_layer = 3
 collision_mask = 3
@@ -93,14 +77,7 @@ shape = SubResource( 13 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 scale = Vector2( 1.72385, 1.32295 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
-emitting = false
-amount = 12
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.69
-randomness = 0.26
-process_material = SubResource( 16 )
+[node name="DebrisExplosion" parent="." instance=ExtResource( 5 )]
 
 [node name="DestroySound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )

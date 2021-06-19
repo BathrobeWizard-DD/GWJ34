@@ -5,7 +5,7 @@ export var max_speed = 250.0
 
 export (PackedScene) var smallDebrisScene
 
-const destroy_particles = preload("res://debris/destroyed_particles.tscn")
+const destroy_particles = preload("res://debris/DebrisExplosion.tscn")
 
 signal hit_by_projectile
 
@@ -44,7 +44,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
-		body.emit_signal("hit_by_debris", "medium")
+		body.emit_signal("hit_by_debris", 10)
 		
 		var destroyed_vfx = destroy_particles.instance()
 		destroyed_vfx.set_global_position(get_global_position())
