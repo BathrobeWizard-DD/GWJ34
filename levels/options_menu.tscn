@@ -31,6 +31,7 @@ margin_right = 42.0
 margin_bottom = 28.0
 size_flags_vertical = 0
 text = "Back"
+menu_root = NodePath("../..")
 
 [node name="HotkeysContainer" type="HBoxContainer" parent="HBoxContainer"]
 margin_left = 62.0
