@@ -3,6 +3,9 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var MAX_HP = 50
+export(int) var playerHP = MAX_HP setget set_HP, get_HP
+
 enum States {NoControl, Moving, Braking}
 export var maxSpeed = 200.0 # pixels per second
 export var accelerationScalar = 80 # pixels per second^2
@@ -10,6 +13,12 @@ export var brakeFactor = 10.0
 var directionVector = Vector2.ZERO
 var screen_size = Vector2.ZERO
 var currentState = null
+
+func set_HP(inputHP):
+	playerHP = inputHP
+	
+func get_HP():
+	return playerHP
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,3 +72,15 @@ func _physics_process(_delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta):
 #	get_input()
+
+func hit_by_debris(healthDecrease):
+	var old_health = get_HP()
+	set_HP(old_health - healthDecrease)
+
+func _on_Area2D_body_entered(body):
+	if (body.is_in_group("mediumDebris")):
+		hit_by_debris(10)
+		body.queue_free()
+	elif (body.is_in_group("smallDebris")):
+		hit_by_debris(2)
+		body.queue_free()
