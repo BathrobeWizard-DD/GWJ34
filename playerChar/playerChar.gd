@@ -75,6 +75,8 @@ func _physics_process(_delta):
 
 func hit_by_debris(healthDecrease):
 	var new_health = get_HP() - healthDecrease
+	if (new_health <= 0):
+		print("Shuold trigger lose state here.")
 	set_HP(new_health)
 	get_node("/root/Node2D/playerHPBar").setHPValue(new_health)
 
