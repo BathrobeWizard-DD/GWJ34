@@ -43,7 +43,7 @@ scene = ExtResource( 3 )
 
 [node name="Credits" parent="VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 96.0
-margin_right = 63.0
+margin_right = 62.0
 margin_bottom = 124.0
 text = "Credits"
 scene = ExtResource( 5 )

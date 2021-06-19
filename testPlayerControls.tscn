@@ -17,11 +17,6 @@ gunProjectileScene = ExtResource( 2 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
-[node name="centerSatellite" parent="." groups=[
-"centerSatellite",
-] instance=ExtResource( 7 )]
-position = Vector2( 256, 256 )
-
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 381 )
 collision_layer = 0
@@ -37,6 +32,7 @@ position = Vector2( 0.0471802, 59.857 )
 "centerSatellite",
 ] instance=ExtResource( 7 )]
 position = Vector2( 256, 256 )
+
 [node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
 [node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
@@ -59,4 +55,3 @@ layer = 2
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
 [connection signal="died" from="playerChar" to="." method="_on_gameover"]
-[connection signal="died" from="centerSatellite" to="." method="_on_gameover"]

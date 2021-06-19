@@ -32,7 +32,8 @@ one_shot = true
 
 [node name="OuchSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = 3.0
+volume_db = 10.0
+attenuation = 0.366021
 bus = "Sounds"
 
 [connection signal="firedProjectile" from="." to="." method="_on_playerChar_firedProjectile"]
