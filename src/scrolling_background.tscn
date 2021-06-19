@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/scrolling_background.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/background.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/earth.png" type="Texture" id=3]
+[ext_resource path="res://src/rotating_earth.gd" type="Script" id=4]
+
+[node name="Node" type="Node"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 512, 512 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 512.0
+margin_bottom = 512.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EarthSprite" type="Sprite" parent="."]
+position = Vector2( 278.501, 923.789 )
+z_index = -1
+texture = ExtResource( 3 )
+script = ExtResource( 4 )

@@ -20,6 +20,9 @@ var readyToShoot = true
 
 signal firedProjectile
 
+onready var ouch_sound = $OuchSound
+
+
 func set_HP(inputHP):
 	playerHP = inputHP
 	
@@ -90,9 +93,11 @@ func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris")):
 		hit_by_debris(10)
 		body.queue_free()
+		ouch_sound.play()
 	elif (body.is_in_group("smallDebris")):
 		hit_by_debris(2)
 		body.queue_free()
+		ouch_sound.play()
 
 
 func _on_gunCooldown_timeout():

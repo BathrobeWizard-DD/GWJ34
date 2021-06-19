@@ -5,6 +5,8 @@ export var max_speed = 250.0
 
 export (PackedScene) var smallDebrisScene
 
+const destroy_particles = preload("res://debris/DebrisExplosion.tscn")
+
 signal hit_by_projectile
 
 var collisionExtents = [
@@ -16,11 +18,7 @@ var collisionExtents = [
 	Vector2(11.232, 11.321)
 ]
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	contact_monitor = true
@@ -34,9 +32,15 @@ func _ready():
 	$AnimatedSprite.set_frame(chosen_frame_number)
 	$CollisionShape2D.shape.set_extents(extents_properties)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _destroy():
+	$AnimatedSprite.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$HitSound.play()
+	
+	var destroyed_vfx = destroy_particles.instance()
+	destroyed_vfx.set_global_position(get_global_position())
+	destroyed_vfx.set_emitting(true)
+	get_parent().add_child(destroyed_vfx)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -46,7 +50,9 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
 		body.emit_signal("hit_by_debris", 10)
-		queue_free()
+		
+
+		_destroy()
 
 func spawn_small_debris(inputVelocity):
 	var smallDebrisPiece = smallDebrisScene.instance()
@@ -63,4 +69,9 @@ func _on_debris_hit_by_projectile(projVelocity):
 	spawn_small_debris((projVelocity * 0.2))
 	spawn_small_debris((projVelocity * 0.2).rotated(PI/6))
 	
+	_destroy()
+
+
+
+func _on_HitSound_finished() -> void:
 	queue_free()
