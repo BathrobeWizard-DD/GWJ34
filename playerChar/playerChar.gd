@@ -14,6 +14,10 @@ var directionVector = Vector2.ZERO
 var screen_size = Vector2.ZERO
 var currentState = null
 
+var readyToShoot = true
+
+signal firedProjectile
+
 func set_HP(inputHP):
 	playerHP = inputHP
 	
@@ -87,3 +91,14 @@ func _on_Area2D_body_entered(body):
 	elif (body.is_in_group("smallDebris")):
 		hit_by_debris(2)
 		body.queue_free()
+
+
+func _on_gunCooldown_timeout():
+	readyToShoot = true
+	pass # Replace with function body.
+
+
+func _on_playerChar_firedProjectile():
+	readyToShoot = false
+	$gunCooldown.start()
+	pass # Replace with function body.

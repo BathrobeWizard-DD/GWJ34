@@ -27,4 +27,10 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="gunCooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="firedProjectile" from="." to="." method="_on_playerChar_firedProjectile"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="gunCooldown" to="." method="_on_gunCooldown_timeout"]
