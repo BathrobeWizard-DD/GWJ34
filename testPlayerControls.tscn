@@ -40,15 +40,18 @@ position = Vector2( 0.0471802, 59.857 )
 ] instance=ExtResource( 7 )]
 position = Vector2( 256, 256 )
 
-[node name="playerGunAim" parent="." instance=ExtResource( 3 )]
-
 [node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
 
 [node name="smallDebrisSpawner" type="Node2D" parent="."]
 
 [node name="playerHPBar" parent="." instance=ExtResource( 9 )]
-position = Vector2( 10, 10 )
 scale = Vector2( 0.5, 0.5 )
+transform = Transform2D( 0.5, 0, 0, 0.5, 0, 0 )
+
+[node name="Crosshair" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="playerGunAim" parent="Crosshair" instance=ExtResource( 3 )]
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
 [connection signal="died" from="playerChar" to="." method="_on_gameover"]
