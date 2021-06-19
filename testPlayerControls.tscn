@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
@@ -8,12 +8,19 @@
 [ext_resource path="res://assets/sprites/background.png" type="Texture" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/scrolling_background.gd" type="Script" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 512, 512 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 512.0
