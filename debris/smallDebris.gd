@@ -48,7 +48,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
-		body.emit_signal("hit_by_debris", "small")
+		body.emit_signal("hit_by_debris", 2)
 		queue_free()
 
 

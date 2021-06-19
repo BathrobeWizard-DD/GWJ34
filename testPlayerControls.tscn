@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/background.png" type="Texture" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://playerChar/playerHealth/playerHPBar.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -44,5 +45,9 @@ position = Vector2( 256, 256 )
 [node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
 
 [node name="smallDebrisSpawner" type="Node2D" parent="."]
+
+[node name="playerHPBar" parent="." instance=ExtResource( 9 )]
+position = Vector2( 10, 10 )
+scale = Vector2( 0.8, 0.8 )
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
