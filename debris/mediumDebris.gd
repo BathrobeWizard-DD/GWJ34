@@ -45,7 +45,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
-		pass
+		body.emit_signal("hit_by_debris", "medium")
+		queue_free()
 
 func spawn_small_debris(inputVelocity):
 	var smallDebrisPiece = smallDebrisScene.instance()
