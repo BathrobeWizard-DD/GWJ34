@@ -5,7 +5,7 @@
 [ext_resource path="res://levels/PauseMenu.gd" type="Script" id=3]
 
 [node name="PauseLayer" type="CanvasLayer"]
-layer = 10
+layer = 5
 
 [node name="PauseMenu" type="Control" parent="."]
 pause_mode = 2

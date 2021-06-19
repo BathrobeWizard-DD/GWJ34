@@ -3,6 +3,8 @@ extends RigidBody2D
 export var min_speed = 150.0
 export var max_speed = 250.0
 
+export(int) var score_mult = 2
+
 signal hit_by_projectile
 
 var collisionExtents = [
@@ -19,7 +21,6 @@ var collisionExtents = [
 	Vector2(8.82, 5.288),
 	Vector2(8.82, 5.288),
 ]
-
 
 func _ready():
 	randomize()

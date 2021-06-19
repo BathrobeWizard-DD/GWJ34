@@ -32,6 +32,7 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Score.score = 0
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
 	ropeOne.set_top_pin(get_node("centerSatellite"))
