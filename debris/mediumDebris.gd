@@ -36,6 +36,11 @@ func _destroy():
 	$AnimatedSprite.visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$HitSound.play()
+	
+	var destroyed_vfx = destroy_particles.instance()
+	destroyed_vfx.set_global_position(get_global_position())
+	destroyed_vfx.set_emitting(true)
+	get_parent().add_child(destroyed_vfx)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -46,10 +51,7 @@ func _on_debris_body_entered(body):
 	if (body.name == "centerSatellite"):
 		body.emit_signal("hit_by_debris", 10)
 		
-		var destroyed_vfx = destroy_particles.instance()
-		destroyed_vfx.set_global_position(get_global_position())
-		destroyed_vfx.set_emitting(true)
-		get_parent().add_child(destroyed_vfx)
+
 		_destroy()
 
 func spawn_small_debris(inputVelocity):
