@@ -1,27 +1,41 @@
 extends Node2D
 
 export (PackedScene) var debrisScene
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var mediumDebrisInstances = []
 
-func spawnMediumDebris():
+func spawnMediumDebris(debris_given = null, position_given = null, velocity_given = null, angle_given = null):
+	
 	var debrisSpawnLocation = $debrisPath/debrisSpawnLocation
-	debrisSpawnLocation.unit_offset = randf()
+	var debrisPiece
+	var angle 
+	var velocity
 	
-	var debrisPiece = debrisScene.instance()
-	
-	debrisPiece.position = debrisSpawnLocation.position
-	
-	var angle = debrisSpawnLocation.rotation + (PI / 2)
-	angle += rand_range(-PI / 4, PI / 4)
-	debrisPiece.rotation = angle
-	
-	var velocity = Vector2(rand_range(debrisPiece.min_speed, debrisPiece.max_speed), 0)
-	debrisPiece.linear_velocity = velocity.rotated(angle)
+	#Logic to determine arguments
+	#Debris type
+	if debris_given == null:
+		debrisPiece = debrisScene.instance()
+	else:
+		debrisPiece = load(debris_given).instance()
+	#Position on Path
+	if position_given == null:
+		debrisSpawnLocation.unit_offset = randf()
+		debrisPiece.position = debrisSpawnLocation.position
+	else:
+		debrisSpawnLocation.unit_offset = position_given
+		debrisPiece.position = debrisSpawnLocation.position
+	#Angle of the vector
+	if angle_given == null:
+		angle = debrisSpawnLocation.rotation + (PI / 2) + rand_range(-PI / 4, PI / 4)
+		debrisPiece.rotation = angle
+	else:
+		angle = debrisSpawnLocation.rotation + (PI / 2) + angle_given
+		debrisPiece.rotation = angle
+	#Velocity of the vector
+	if velocity_given == null:
+		velocity = Vector2(rand_range(debrisPiece.min_speed, debrisPiece.max_speed), 0)
+		debrisPiece.linear_velocity = velocity.rotated(angle)
+	else:
+		debrisPiece.linear_velocity = velocity_given.rotated(angle)
 	
 	mediumDebrisInstances.append(debrisPiece)
 	add_child(debrisPiece)
