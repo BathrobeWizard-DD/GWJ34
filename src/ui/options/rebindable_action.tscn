@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/ui/options/rebindable_action.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=2]
 
 [node name="Button" type="Button"]
 margin_right = 21.0
@@ -12,5 +13,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 action = "ui_select"
+
+[node name="ActiveSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -3.0
+bus = "Sounds"
 
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]
