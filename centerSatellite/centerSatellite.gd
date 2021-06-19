@@ -3,8 +3,6 @@ extends StaticBody2D
 export(int) var MAX_HP = 200
 export(int) var health = MAX_HP setget set_health, get_health
 
-var debrisTypeDamageValues = {"small": 2, "medium": 10}
-
 signal hit_by_debris
 
 onready var texture_progress = $TextureProgress
@@ -18,8 +16,7 @@ func set_health(value: int) -> void:
 func get_health():
 	return health
 
-func _on_centerSatellite_hit_by_debris(debris_type):
-	var healthDecrease = debrisTypeDamageValues[debris_type]
+func _on_centerSatellite_hit_by_debris(healthDecrease):
 	var old_health = get_health()
 	set_health(old_health - healthDecrease)
 
