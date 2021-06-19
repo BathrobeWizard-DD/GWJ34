@@ -5,30 +5,16 @@
 [ext_resource path="res://playerChar/playerGunAim/gunCrosshairs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://testPlayerControls.gd" type="Script" id=4]
 [ext_resource path="res://rope/Rope.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sprites/background.png" type="Texture" id=6]
+[ext_resource path="res://src/scrolling_background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/scrolling_background.gd" type="Script" id=9]
+[ext_resource path="res://assets/music/Kessler_Impact.ogg" type="AudioStream" id=9]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-script = ExtResource( 9 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 512, 512 )
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 512.0
-margin_bottom = 512.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 381 )
@@ -51,5 +37,10 @@ position = Vector2( 256, 256 )
 [node name="mediumDebrisManager" parent="." instance=ExtResource( 8 )]
 
 [node name="smallDebrisSpawner" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -9.782
+autoplay = true
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
