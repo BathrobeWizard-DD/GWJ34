@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/ui/options/volume_slider.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/ui/options/rebindable_action.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sounds/feedback_sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/shoot_sound.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/ui/options/back_main_menu_button.tscn" type="PackedScene" id=4]
 
 [node name="MarginContainer" type="MarginContainer"]
@@ -241,6 +241,7 @@ feedback_sound_path = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/VolumeSlidersContainer/VolumeContainer3/VolumeSlider"]
 stream = ExtResource( 3 )
+volume_db = -6.0
 bus = "Sounds"
 
 [editable path="HBoxContainer/HotkeysContainer/GridContainer/HBoxContainer/RebindableAction"]
