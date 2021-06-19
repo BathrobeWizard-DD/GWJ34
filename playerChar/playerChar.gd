@@ -74,8 +74,9 @@ func _physics_process(_delta):
 #	get_input()
 
 func hit_by_debris(healthDecrease):
-	var old_health = get_HP()
-	set_HP(old_health - healthDecrease)
+	var new_health = get_HP() - healthDecrease
+	set_HP(new_health)
+	get_node("/root/Node2D/playerHPBar").setHPValue(new_health)
 
 func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris")):
