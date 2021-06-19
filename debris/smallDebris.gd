@@ -27,6 +27,8 @@ var collisionExtents = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	contact_monitor = true
+	contacts_reported = 1
 	add_to_group("smallDebris")
 	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
 	var chosen_frame_number = (randi() % frame_count)
@@ -45,7 +47,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_debris_body_entered(body):
-	pass
+	if (body.name == "centerSatellite"):
+		pass
 
 
 func _on_debris_hit_by_projectile(projVelocity):
