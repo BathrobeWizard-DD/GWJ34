@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/satellite_empty.png" type="Texture" id=1]
 [ext_resource path="res://centerSatellite/centerSatellite.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/satellite_full.png" type="Texture" id=3]
 [ext_resource path="res://assets/sounds/explosion_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://playerChar/shake_camera.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.97371, 64.9606 )
@@ -36,5 +37,9 @@ shape = SubResource( 1 )
 stream = ExtResource( 4 )
 volume_db = -6.0
 bus = "Sounds"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 5 )
 
 [connection signal="hit_by_debris" from="." to="." method="_on_centerSatellite_hit_by_debris"]
