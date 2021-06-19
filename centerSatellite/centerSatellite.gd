@@ -1,16 +1,17 @@
 extends StaticBody2D
 
-export(int) var MAX_HP = 200
+export(int) var MAX_HP = 100
 export(int) var health = MAX_HP setget set_health, get_health
 
 signal hit_by_debris
+signal died
 
 onready var texture_progress = $TextureProgress
 
 func set_health(value: int) -> void:
 	health = value
 	if health == 0:
-		queue_free()
+		emit_signal("died")
 	texture_progress.value = health
 
 func get_health():

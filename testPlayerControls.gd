@@ -37,3 +37,6 @@ func _ready():
 
 func _on_Node2D_spawn_small_debris():
 	pass
+	
+func _on_gameover():
+	get_tree().change_scene("res://levels/game_over_menu.tscn")
