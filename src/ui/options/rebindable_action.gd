@@ -18,6 +18,8 @@ func _input(input_event: InputEvent) -> void:
 		_update_button_text(input_event)
 		_editing = false
 		pressed = false
+		
+		$ActiveSound.play()
 
 
 func _update_button_text(input_event: InputEvent) -> void:

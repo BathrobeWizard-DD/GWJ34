@@ -4,9 +4,11 @@ export (PackedScene) var gunProjectileScene
 
 signal spawn_small_debris
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+const PITCH_SCALE_DIFFERENCE = 0.05
+var _random = RandomNumberGenerator.new()
+
+onready var _shoot_sound = $ShootSound
+
 
 func _input(event):
 	pass
@@ -20,6 +22,8 @@ func playerFireGun():
 			$playerChar.position.direction_to(get_global_mouse_position()),
 			$playerChar.get_linear_velocity()
 		)
+		_shoot_sound.set_pitch_scale(1 + _random.randf_range(-PITCH_SCALE_DIFFERENCE, PITCH_SCALE_DIFFERENCE))
+		_shoot_sound.play()
 		$playerChar.emit_signal("firedProjectile")
 
 func _process(delta):

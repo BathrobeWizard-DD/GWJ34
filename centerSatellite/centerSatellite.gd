@@ -6,6 +6,7 @@ export(int) var health = MAX_HP setget set_health, get_health
 signal hit_by_debris
 
 onready var texture_progress = $TextureProgress
+onready var hit_sound  = $HitSound
 
 func set_health(value: int) -> void:
 	health = value
@@ -22,6 +23,7 @@ func _on_centerSatellite_hit_by_debris(healthDecrease):
 		print("Should trigger lose here.")
 		pass
 	set_health(new_health)
+	hit_sound.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
