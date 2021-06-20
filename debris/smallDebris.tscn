@@ -63,8 +63,8 @@ resource_local_to_scene = true
 extents = Vector2( 8.31946, 7.12343 )
 
 [node name="smallDebris" type="RigidBody2D"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 physics_material_override = ExtResource( 3 )
 script = ExtResource( 1 )
 

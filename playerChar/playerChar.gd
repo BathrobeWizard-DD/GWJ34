@@ -98,6 +98,10 @@ func _on_Area2D_body_entered(body):
 		body.queue_free()
 		ouch_sound.play()
 		hit_by_debris(2)
+	elif (body.is_in_group("enemy_projectile")):
+		body.queue_free()
+		ouch_sound.play()
+		hit_by_debris(2)
 
 
 func _on_gunCooldown_timeout():
