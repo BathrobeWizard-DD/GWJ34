@@ -1,0 +1,168 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/options/rebindable_action.tscn" type="PackedScene" id=1]
+
+[node name="HotkeysContainer" type="HBoxContainer"]
+margin_left = 62.0
+margin_right = 340.0
+margin_bottom = 472.0
+custom_constants/separation = 80
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_right = 278.0
+margin_bottom = 472.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveUp" type="HBoxContainer" parent="GridContainer"]
+margin_right = 132.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/MoveUp"]
+margin_top = 6.0
+margin_right = 58.0
+margin_bottom = 22.0
+text = "Move Up"
+
+[node name="RebindableAction" parent="GridContainer/MoveUp" instance=ExtResource( 1 )]
+margin_left = 62.0
+margin_right = 80.0
+margin_bottom = 28.0
+keep_pressed_outside = true
+text = "W"
+action = "move_up"
+
+[node name="MoveDown" type="HBoxContainer" parent="GridContainer"]
+margin_left = 142.0
+margin_right = 278.0
+margin_bottom = 28.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/MoveDown"]
+margin_top = 6.0
+margin_right = 76.0
+margin_bottom = 22.0
+text = "Move down:"
+
+[node name="RebindableAction" parent="GridContainer/MoveDown" instance=ExtResource( 1 )]
+margin_left = 80.0
+margin_right = 98.0
+margin_bottom = 28.0
+text = "S"
+action = "move_down"
+
+[node name="MoveLeft" type="HBoxContainer" parent="GridContainer"]
+margin_top = 38.0
+margin_right = 132.0
+margin_bottom = 66.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/MoveLeft"]
+margin_top = 6.0
+margin_right = 76.0
+margin_bottom = 22.0
+text = "Move Left:"
+
+[node name="RebindableAction" parent="GridContainer/MoveLeft" instance=ExtResource( 1 )]
+margin_left = 80.0
+margin_right = 98.0
+margin_bottom = 28.0
+text = "A"
+action = "move_left"
+
+[node name="MoveRight" type="HBoxContainer" parent="GridContainer"]
+margin_left = 142.0
+margin_top = 38.0
+margin_right = 278.0
+margin_bottom = 66.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/MoveRight"]
+margin_top = 6.0
+margin_right = 80.0
+margin_bottom = 22.0
+text = "Move Right:"
+
+[node name="RebindableAction" parent="GridContainer/MoveRight" instance=ExtResource( 1 )]
+margin_left = 84.0
+margin_right = 102.0
+margin_bottom = 28.0
+text = "D"
+action = "move_right"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+margin_top = 76.0
+margin_right = 132.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer"]
+margin_top = 6.0
+margin_right = 44.0
+margin_bottom = 22.0
+text = "Shoot:"
+
+[node name="RebindableAction" parent="GridContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 48.0
+margin_right = 132.0
+margin_bottom = 28.0
+text = "Mouse left"
+action = "click_leftbutton"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer"]
+margin_left = 142.0
+margin_top = 76.0
+margin_right = 278.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer2"]
+margin_top = 6.0
+margin_right = 44.0
+margin_bottom = 22.0
+text = "Brake:"
+
+[node name="RebindableAction" parent="GridContainer/HBoxContainer2" instance=ExtResource( 1 )]
+margin_left = 48.0
+margin_right = 136.0
+margin_bottom = 28.0
+text = "Mouse right"
+action = "click_rightbutton"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GridContainer"]
+margin_top = 114.0
+margin_right = 132.0
+margin_bottom = 142.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer3"]
+margin_top = 6.0
+margin_right = 46.0
+margin_bottom = 22.0
+text = "Pause:"
+
+[node name="RebindableAction" parent="GridContainer/HBoxContainer3" instance=ExtResource( 1 )]
+margin_left = 50.0
+margin_right = 68.0
+margin_bottom = 28.0
+text = "P"
+action = "ui_pause"

@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GWJ#34"
+config/name="Battle Bunny Satellite Scurry!"
 run/main_scene="res://levels/main_menu.tscn"
 config/icon="res://icon.png"
 
@@ -30,12 +30,12 @@ Options="*res://src/options.gd"
 PauseMenu="*res://levels/pause_menu.tscn"
 MusicPlayer="res://music_player.tscn"
 Score="*res://Score.gd"
+EnemyWaveManager="*res://src/Managers/EnemyWaveManager.tscn"
 
 [display]
 
 window/size/width=512
 window/size/height=512
-window/size/resizable=false
 window/size/test_width=1024
 window/size/test_height=1024
 window/stretch/mode="viewport"
