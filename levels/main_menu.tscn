@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/ui/open_scene_button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://testPlayerControls.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/options_menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scrolling_background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/credits_menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/title.png" type="Texture" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -47,3 +48,25 @@ margin_right = 62.0
 margin_bottom = 124.0
 text = "Credits"
 scene = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 117.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_left = 74.0
+margin_right = 437.0
+margin_bottom = 137.0
+custom_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer"]
+margin_top = 20.0
+margin_right = 363.0
+margin_bottom = 137.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
