@@ -56,7 +56,7 @@ func _process(delta):
 	grenadeCooldown.set_value(100 - (player.grenadeCooldown.time_left / player.grenadeCooldown.wait_time * 100))
 	if Input.is_action_pressed("click_leftbutton"):
 		playerFireGun()
-	elif Input.is_action_pressed("click_rightbutton"):
+	if Input.is_action_pressed("click_rightbutton"):
 		playerFireNade()
 
 # Called when the node enters the scene tree for the first time.
