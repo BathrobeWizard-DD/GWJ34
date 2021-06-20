@@ -11,9 +11,9 @@ func _input(event):
 func explode():
 	var bodies = radius.get_overlapping_bodies()
 	if bodies.size() > 0:
-		print(bodies)
 		for body in bodies:
-			if "debris" in body.name:
-				print("OH NO")
+			if "Debris" in body.name:
+				Score.score += 100 * body.score_mult
+				body.emit_signal("hit_by_projectile", get_parent().projVelocity)
 	emit_signal("exploded")
 	get_parent().queue_free()

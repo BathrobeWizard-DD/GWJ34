@@ -35,6 +35,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris") or body.is_in_group("smallDebris")):
+		for child in get_children():
+			if child.name == "ExplosionController":
+				child.explode()
+				return
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile", projVelocity)
 		queue_free()

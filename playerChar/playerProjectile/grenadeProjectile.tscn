@@ -5,7 +5,7 @@
 [ext_resource path="res://playerChar/playerProjectile/ExplosionController.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 68.0074
+radius = 53.0
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -25,7 +25,7 @@ animations = [ {
 } ]
 
 [node name="playerProjectile" instance=ExtResource( 1 )]
-projSpeed = 200
+projSpeed = 150
 
 [node name="ExplosionController" type="Node2D" parent="." index="0"]
 script = ExtResource( 3 )
@@ -38,4 +38,3 @@ shape = SubResource( 4 )
 [node name="AnimatedSprite" parent="." index="1"]
 position = Vector2( 1.19209e-07, 5.96046e-08 )
 frames = SubResource( 3 )
-frame = 1

@@ -63,4 +63,4 @@ func _on_centerSatellite_died():
 
 func on_grenade_exploded():
 	print("KABOOM")
-	player.readyToShoot = true
+	player.gunCooldown.start()

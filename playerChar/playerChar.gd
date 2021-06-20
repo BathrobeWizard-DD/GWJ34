@@ -12,16 +12,17 @@ enum States {NoControl, Moving, Braking}
 export var maxSpeed = 200.0 # pixels per second
 export var accelerationScalar = 80 # pixels per second^2
 export var brakeFactor = 10.0
+export var gun = "blaster"
 var directionVector = Vector2.ZERO
 var screen_size = Vector2.ZERO
 var currentState = null
 
 var readyToShoot = true
-var gun = "launcher"
 
 signal firedProjectile
 
 onready var ouch_sound = $OuchSound
+onready var gunCooldown = $gunCooldown
 
 
 func set_HP(inputHP):
@@ -108,4 +109,4 @@ func _on_gunCooldown_timeout():
 func _on_playerChar_firedProjectile():
 	readyToShoot = false
 	if gun == "blaster":
-		$gunCooldown.start()
+		gunCooldown.start()
