@@ -4,9 +4,18 @@
 
 [node name="EnemyWaveManager" type="Node"]
 script = ExtResource( 1 )
+debris_frequecy_change_rate = 15
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 0.001
 one_shot = true
 
+[node name="EnemyFrequencyTimer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="DebrisFrequencyTimer" type="Timer" parent="."]
+wait_time = 20.0
+
 [connection signal="timeout" from="WaveTimer" to="." method="_call_wave"]
+[connection signal="timeout" from="EnemyFrequencyTimer" to="." method="_on_EnemyFrequencyTimer_timeout"]
+[connection signal="timeout" from="DebrisFrequencyTimer" to="." method="_on_DebrisFrequencyTimer_timeout"]

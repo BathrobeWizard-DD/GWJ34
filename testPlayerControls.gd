@@ -1,10 +1,9 @@
 extends Node2D
 
 export (PackedScene) var gunProjectileScene
-var level = 1
 
 signal spawn_small_debris
-signal level_start(current_level)
+signal level_start()
 
 const PITCH_SCALE_DIFFERENCE = 0.05
 var _random = RandomNumberGenerator.new()
@@ -36,7 +35,8 @@ func _process(delta):
 func _ready():
 
 	EnemyWaveManager.debri_manager = get_node("mediumDebrisManager")
-	self.connect("level_start", EnemyWaveManager, "_on_level_start")
+	self.connect("level_start", EnemyWaveManager, "_on_start")
+	EnemyWaveManager.connect("DebrisFrequency", get_node("mediumDebrisManager"), "_on_frquency_change")
 	Score.score = 0
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
@@ -44,7 +44,7 @@ func _ready():
 	ropeOne.set_bottom_pin(ropeTwo.get_node("RigidBody2D"))
 	#ropeTwo.set_top_pin(ropeOne.get_node("RigidBody2D15"))
 	ropeTwo.set_bottom_pin(get_node("playerChar"))
-	emit_signal("level_start", level)
+	emit_signal("level_start")
 
 func _on_Node2D_spawn_small_debris():
 	pass

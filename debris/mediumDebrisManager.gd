@@ -1,5 +1,6 @@
 extends Node2D
 
+export var spawn_frequency = 2.5
 export (PackedScene) var debrisScene
 var mediumDebrisInstances = []
 
@@ -42,13 +43,18 @@ func spawnMediumDebris(debris_given = null, position_given = null, velocity_give
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$debrisSpawnTimer.start()
-	pass
+	$debrisSpawnTimer.start(2.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-
 func _on_debrisSpawnTimer_timeout():
 	spawnMediumDebris()
+
+func _on_frquency_change(frequency_change):
+	print(frequency_change)
+	spawn_frequency -= frequency_change
+	if spawn_frequency <= 0:
+		spawn_frequency = 0.5
+	get_node("debrisSpawnTimer").set_wait_time(spawn_frequency)
