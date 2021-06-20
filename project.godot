@@ -30,6 +30,7 @@ Options="*res://src/options.gd"
 PauseMenu="*res://levels/pause_menu.tscn"
 MusicPlayer="res://music_player.tscn"
 Score="*res://Score.gd"
+EnemyWaveManager="*res://src/Managers/EnemyWaveManager.tscn"
 
 [display]
 
