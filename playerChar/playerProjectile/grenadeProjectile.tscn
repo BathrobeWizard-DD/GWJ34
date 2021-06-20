@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/grenade_sheet.png" type="Texture" id=2]
+[ext_resource path="res://playerChar/playerProjectile/ExplosionController.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 68.0074
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="playerProjectile" instance=ExtResource( 1 )]
+projSpeed = 200
+
+[node name="ExplosionController" type="Node2D" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Radius" type="Area2D" parent="ExplosionController" index="0"]
+
+[node name="Shape" type="CollisionShape2D" parent="ExplosionController/Radius" index="0"]
+shape = SubResource( 4 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+position = Vector2( 1.19209e-07, 5.96046e-08 )
+frames = SubResource( 3 )
+frame = 1

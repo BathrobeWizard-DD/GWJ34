@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var projSpeed = 500
+export(int) var projSpeed = 500
 var projVelocity = Vector2.ZERO
 var angleThreshold = PI / 2
 

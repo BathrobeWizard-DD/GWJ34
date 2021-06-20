@@ -1,30 +1,39 @@
 extends Node2D
 
-export (PackedScene) var gunProjectileScene
-
 signal spawn_small_debris
 
 const PITCH_SCALE_DIFFERENCE = 0.05
 var _random = RandomNumberGenerator.new()
 
 onready var _shoot_sound = $ShootSound
-
+onready var player = $playerChar
 
 func _input(event):
 	pass
 
 func playerFireGun():
-	if ($playerChar.readyToShoot):
-		var gunProjectile = gunProjectileScene.instance()
+	var projectile
+	match player.gun:
+		"blaster":
+			projectile = "standard"
+		"launcher":
+			projectile = "grenade"
+		_:
+			projectile = "standard"
+			
+	if (player.readyToShoot):
+		var gunProjectile = load("res://playerChar/playerProjectile/" + projectile + "Projectile.tscn").instance()
 		call_deferred('add_child', gunProjectile)
+		if projectile == "grenade":
+			gunProjectile.get_node("ExplosionController").connect("exploded", self, "on_grenade_exploded")
 		gunProjectile.shootProjectile(
-			$playerChar.position,
-			$playerChar.position.direction_to(get_global_mouse_position()),
-			$playerChar.get_linear_velocity()
+			player.position,
+			player.position.direction_to(get_global_mouse_position()),
+			player.get_linear_velocity()
 		)
 		_shoot_sound.set_pitch_scale(1 + _random.randf_range(-PITCH_SCALE_DIFFERENCE, PITCH_SCALE_DIFFERENCE))
 		_shoot_sound.play()
-		$playerChar.emit_signal("firedProjectile")
+		player.emit_signal("firedProjectile")
 
 func _process(delta):
 	if Input.is_action_pressed("click_leftbutton"):
@@ -51,3 +60,7 @@ func _on_gameover():
 
 func _on_centerSatellite_died():
 	gameOver()
+
+func on_grenade_exploded():
+	print("KABOOM")
+	player.readyToShoot = true

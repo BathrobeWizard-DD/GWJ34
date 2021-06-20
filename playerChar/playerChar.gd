@@ -17,6 +17,7 @@ var screen_size = Vector2.ZERO
 var currentState = null
 
 var readyToShoot = true
+var gun = "launcher"
 
 signal firedProjectile
 
@@ -102,10 +103,9 @@ func _on_Area2D_body_entered(body):
 
 func _on_gunCooldown_timeout():
 	readyToShoot = true
-	pass # Replace with function body.
 
 
 func _on_playerChar_firedProjectile():
 	readyToShoot = false
-	$gunCooldown.start()
-	pass # Replace with function body.
+	if gun == "blaster":
+		$gunCooldown.start()
