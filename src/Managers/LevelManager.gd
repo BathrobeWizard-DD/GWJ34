@@ -18,11 +18,9 @@ signal DebrisFrequency(frequecy_change)
 
 
 func _call_wave():
-	print("pause")
 	emit_signal("DebrisWave", true)
 	get_node("ToggleDebrisTimer").start(debris_pause_time)
 	var spawn_position_increment = 1.0/spawn_table["amount"]
-	print(spawn_table["amount"])
 	for enemy in spawn_table["amount"]:
 		debri_manager.spawnMediumDebris(spawn_table["type"],enemy * spawn_position_increment,spawn_table["velocity"], spawn_table["angle"])
 	if spawn_table["amount"] < max_wave_debris_amount:
