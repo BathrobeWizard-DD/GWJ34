@@ -19,7 +19,7 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 492.0
 margin_bottom = 492.0
-custom_constants/separation = 6
+custom_constants/separation = 20
 
 [node name="BackMainMenuButton" parent="VBoxContainer" instance=ExtResource( 1 )]
 margin_left = 0.0
@@ -31,49 +31,101 @@ size_flags_horizontal = 0
 text = "Back"
 menu_root = NodePath("../..")
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 34.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 48.0
 margin_right = 472.0
-margin_bottom = 113.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 65.0
-margin_right = 407.0
-margin_bottom = 79.0
-custom_constants/separation = 6
+margin_bottom = 213.0
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Team" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 342.0
+[node name="Team" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_right = 472.0
 margin_bottom = 16.0
 text = "Team:"
 
-[node name="Team2" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 22.0
-margin_right = 342.0
-margin_bottom = 57.0
-text = "Vikfro: Composer & additional programming
-music mixed by Babasmas (@babasmas on Twitter)"
+[node name="Team3" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 472.0
+margin_bottom = 42.0
+text = "BathrobeWizard: Programming & additional Design"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Team3" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 63.0
-margin_right = 342.0
-margin_bottom = 79.0
-text = "Blabla"
+[node name="Team5" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 52.0
+margin_right = 472.0
+margin_bottom = 68.0
+text = "Helix: Programming & Additional Design​"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Team4" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 85.0
-margin_right = 342.0
-margin_bottom = 101.0
-text = "Bloblo"
+[node name="Team6" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 78.0
+margin_right = 472.0
+margin_bottom = 94.0
+text = "Henry: Game Design & Art"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Team4" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 104.0
+margin_right = 472.0
+margin_bottom = 120.0
+text = "Steven: Art & additional Programming"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team2" type="Label" parent="VBoxContainer/VBoxContainer2"]
+margin_top = 130.0
+margin_right = 472.0
+margin_bottom = 165.0
+text = "Vikfro: Composer, Sound Design & additional Programming
+Music mixed by Babasmas (@babasmas on Twitter)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 233.0
+margin_right = 472.0
+margin_bottom = 332.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_right = 472.0
+margin_bottom = 16.0
+text = "Assets:"
+
+[node name="Team3" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 472.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 460, 0 )
+size_flags_horizontal = 3
+text = "All art and music was created during the jam. 
+The sounds are from GameAudioGDC packs and one from 331938 by pyro freesound.org that we modified.
+"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 352.0
+margin_right = 472.0
+margin_bottom = 368.0
+
+[node name="Team" type="Label" parent="VBoxContainer/CenterContainer3"]
+margin_left = 155.0
+margin_right = 317.0
+margin_bottom = 16.0
+text = "Thank you for playing!"

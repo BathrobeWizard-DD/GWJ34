@@ -9,6 +9,8 @@ radius = 8.42432
 height = 4.13646
 
 [node name="playerChar" type="RigidBody2D"]
+collision_layer = 9
+collision_mask = 9
 mode = 2
 mass = 5.0
 gravity_scale = 0.0
