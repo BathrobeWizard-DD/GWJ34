@@ -13,7 +13,7 @@ onready var points := [
 onready var offset_angle := 0.0
 onready var default_angle := Vector2.UP.angle()
 
-func _process(_delta):
+func _physics_process(_delta):
 	self.rotation_degrees = 0
 	
 	for i in range(len(points)):
