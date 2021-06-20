@@ -7,6 +7,10 @@ extends KinematicBody2D
 
 export (PackedScene) var enemyProjectileScene
 
+const death_effect = preload("res://enemy/AlienDeath.tscn")
+
+var health = 3
+
 var destinationVector = Vector2.ZERO
 var screenOffset = 20
 
@@ -16,6 +20,9 @@ var currentVelocity = Vector2.ZERO
 var score_mult = 4
 
 signal hit_by_projectile
+
+onready var shoot_sound = $ShootSound
+onready var hit_sound = $HitSound
 
 func set_destination(inputVector):
 	destinationVector = inputVector
@@ -33,14 +40,13 @@ func fireProjectile(targetPosition):
 		position,
 		position.direction_to(targetPosition).normalized()
 	)
-	
+	shoot_sound.play()
 	get_node("/root/Node2D").call_deferred('add_child', enemyProjectile)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("enemy")
 	var randomPosition = newRandPositionWithinViewport()
-	$shootTimer.start()
 	set_destination(randomPosition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,4 +76,12 @@ func _on_shootTimer_timeout():
 
 
 func _on_enemy_hit_by_projectile():
-	queue_free()
+	if health > 1:
+		health -= 1
+		hit_sound.play()
+	else:
+		var vfx = death_effect.instance()
+		vfx.set_global_position(get_global_position())
+		vfx.set_emitting(true)
+		get_parent().add_child(vfx)
+		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
@@ -12,6 +12,22 @@
 [ext_resource path="res://assets/sounds/shoot_sound.wav" type="AudioStream" id=10]
 [ext_resource path="res://ScoreLabel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://enemy/enemySpawner.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_oout"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -63,6 +79,27 @@ margin_bottom = 44.0
 layer = 2
 
 [node name="playerGunAim" parent="Crosshair" instance=ExtResource( 3 )]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -4.11763
+margin_top = 74.9535
+margin_right = 519.882
+margin_bottom = 147.953
+text = "Protect the satellite by shooting the debris. 
+Keep moving to not get hurt! 
+
+(Press P for pause)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+autoplay = "fade_oout"
+anims/fade_oout = SubResource( 1 )
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
 [connection signal="died" from="playerChar" to="." method="_on_gameover"]
