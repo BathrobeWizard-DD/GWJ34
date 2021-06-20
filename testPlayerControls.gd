@@ -37,6 +37,7 @@ func _ready():
 	EnemyWaveManager.debri_manager = get_node("mediumDebrisManager")
 	self.connect("level_start", EnemyWaveManager, "_on_start")
 	EnemyWaveManager.connect("DebrisFrequency", get_node("mediumDebrisManager"), "_on_frquency_change")
+	EnemyWaveManager.connect("DebrisWave", get_node("mediumDebrisManager"), "_on_wave")
 	Score.score = 0
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")

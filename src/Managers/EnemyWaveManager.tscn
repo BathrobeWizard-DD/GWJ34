@@ -16,6 +16,10 @@ wait_time = 30.0
 [node name="DebrisFrequencyTimer" type="Timer" parent="."]
 wait_time = 20.0
 
+[node name="ToggleDebrisTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="WaveTimer" to="." method="_call_wave"]
 [connection signal="timeout" from="EnemyFrequencyTimer" to="." method="_on_EnemyFrequencyTimer_timeout"]
 [connection signal="timeout" from="DebrisFrequencyTimer" to="." method="_on_DebrisFrequencyTimer_timeout"]
+[connection signal="timeout" from="ToggleDebrisTimer" to="." method="_on_ToggleDebrisTimer_timeout"]

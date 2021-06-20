@@ -49,11 +49,13 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func _on_wave(toggle):
+	get_node("debrisSpawnTimer").set_paused(toggle)
+
 func _on_debrisSpawnTimer_timeout():
 	spawnMediumDebris()
 
 func _on_frquency_change(frequency_change):
-	print(frequency_change)
 	spawn_frequency -= frequency_change
 	if spawn_frequency <= 0:
 		spawn_frequency = 0.5
