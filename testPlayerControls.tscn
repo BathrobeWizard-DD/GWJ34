@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
@@ -10,17 +10,13 @@
 [ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://playerChar/playerHealth/playerHPBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sounds/shoot_sound.wav" type="AudioStream" id=10]
+[ext_resource path="res://ScoreLabel.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
-
-[node name="centerSatellite" parent="." groups=[
-"centerSatellite",
-] instance=ExtResource( 7 )]
-position = Vector2( 256, 256 )
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 381 )
@@ -32,6 +28,11 @@ position = Vector2( 256, 256 )
 
 [node name="RopeSegTwo" parent="RopeSegOne" instance=ExtResource( 5 )]
 position = Vector2( 0.0471802, 59.857 )
+
+[node name="centerSatellite" parent="." groups=[
+"centerSatellite",
+] instance=ExtResource( 7 )]
+position = Vector2( 256, 256 )
 
 [node name="playerGunAim" parent="." instance=ExtResource( 3 )]
 
@@ -45,7 +46,21 @@ volume_db = -6.0
 bus = "Sounds"
 
 [node name="playerHPBar" parent="." instance=ExtResource( 9 )]
-position = Vector2( 10, 10 )
-scale = Vector2( 0.8, 0.8 )
+layer = 6
+scale = Vector2( 0.5, 0.5 )
+transform = Transform2D( 0.5, 0, 0, 0.5, 0, 0 )
+
+[node name="ScoreLabel" parent="playerHPBar" instance=ExtResource( 11 )]
+margin_left = 816.0
+margin_top = 8.0
+margin_right = 916.0
+margin_bottom = 44.0
+
+[node name="Crosshair" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="playerGunAim" parent="Crosshair" instance=ExtResource( 3 )]
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
+[connection signal="died" from="playerChar" to="." method="_on_gameover"]
+[connection signal="died" from="centerSatellite" to="." method="_on_centerSatellite_died"]

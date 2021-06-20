@@ -8,5 +8,4 @@ script = ExtResource( 2 )
 
 [node name="Crosshairs" type="Sprite" parent="."]
 position = Vector2( 0.657194, 0.657194 )
-scale = Vector2( 1.41783, 1.41783 )
 texture = ExtResource( 1 )

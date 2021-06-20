@@ -32,6 +32,7 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Score.score = 0
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
 	ropeOne.set_top_pin(get_node("centerSatellite"))
@@ -41,3 +42,12 @@ func _ready():
 
 func _on_Node2D_spawn_small_debris():
 	pass
+
+func gameOver():
+	get_tree().change_scene("res://levels/game_over_menu.tscn")
+
+func _on_gameover():
+	gameOver()
+
+func _on_centerSatellite_died():
+	gameOver()
