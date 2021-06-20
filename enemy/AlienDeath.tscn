@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/debris/particles.png" type="Texture" id=1]
 [ext_resource path="res://assets/sounds/alien death.wav" type="AudioStream" id=2]
-[ext_resource path="res://src/self_remove_particle.gd" type="Script" id=3]
+[ext_resource path="res://src/self_remove_cpuparticles.gd" type="Script" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -17,7 +17,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 94.4318 ), 8.06059, 0.0, 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.00557184, 0, 0, Vector2( 0.934211, 0 ), -4.28939, 0.0, 0, 0 ]
 
-[node name="DebrisExplosion" type="CPUParticles2D"]
+[node name="AlienDeath" type="CPUParticles2D"]
 modulate = Color( 0.364706, 0.933333, 0.0705882, 1 )
 material = SubResource( 1 )
 emitting = false
