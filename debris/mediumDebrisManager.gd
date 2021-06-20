@@ -42,8 +42,8 @@ func spawnMediumDebris(debris_given = null, position_given = null, velocity_give
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$debrisSpawnTimer.start()
-
+	#$debrisSpawnTimer.start()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

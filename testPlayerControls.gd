@@ -1,8 +1,10 @@
 extends Node2D
 
 export (PackedScene) var gunProjectileScene
+var level = 1
 
 signal spawn_small_debris
+signal level_start(current_level)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -21,12 +23,15 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EnemyWaveManager.debri_manager = get_node("mediumDebrisManager")
+	self.connect("level_start", EnemyWaveManager, "_on_level_start")
 	var ropeOne = get_node("RopeSegOne")
 	var ropeTwo = get_node("RopeSegOne/RopeSegTwo")
 	ropeOne.set_top_pin(get_node("centerSatellite"))
 	ropeOne.set_bottom_pin(ropeTwo.get_node("RigidBody2D"))
 	#ropeTwo.set_top_pin(ropeOne.get_node("RigidBody2D15"))
 	ropeTwo.set_bottom_pin(get_node("playerChar"))
+	emit_signal("level_start", level)
 
 func _on_Node2D_spawn_small_debris():
 	pass
