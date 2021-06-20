@@ -8,6 +8,8 @@ export var spawnInterval = 6
 # var a = 2
 # var b = "text"
 
+var wave = 0
+
 func spawnEnemy():
 	var spawnLocation = $spawnPath/spawnLocation
 	spawnLocation.unit_offset = randf()
@@ -29,3 +31,11 @@ func _process(delta):
 
 func _on_spawnTimer_timeout():
 	spawnEnemy()
+	
+	if wave > 4:
+		spawnEnemy()
+		
+	if wave > 10:
+		spawnEnemy()
+
+	wave += 1

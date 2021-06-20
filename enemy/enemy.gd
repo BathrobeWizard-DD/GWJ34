@@ -1,11 +1,10 @@
 extends KinematicBody2D
 
 export (PackedScene) var enemyProjectileScene
-export(int) var MAX_HP = 3
 
 const death_effect = preload("res://enemy/AlienDeath.tscn")
 
-var health = 3
+var health = 2
 
 var destinationVector = Vector2.ZERO
 var screenOffset = 20
