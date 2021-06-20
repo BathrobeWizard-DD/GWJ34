@@ -39,11 +39,13 @@ func _on_Area2D_body_entered(body):
 		for child in get_children():
 			if child.name == "ExplosionController":
 				child.explode()
-				return
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile", projVelocity)
 		queue_free()
 	elif (body.is_in_group("enemy")):
+		for child in get_children():
+			if child.name == "ExplosionController":
+				child.explode()
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile")
 		queue_free()
