@@ -103,5 +103,5 @@ func _on_enemy_hit_by_projectile():
 		var vfx = death_effect.instance()
 		vfx.set_global_position(get_global_position())
 		vfx.set_emitting(true)
-		get_parent().add_child(vfx)
+		get_tree().get_root().get_node("Node2D").add_child(vfx)
 		queue_free()

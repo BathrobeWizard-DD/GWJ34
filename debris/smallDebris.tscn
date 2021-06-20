@@ -78,6 +78,7 @@ shape = SubResource( 13 )
 scale = Vector2( 1.72385, 1.32295 )
 
 [node name="DebrisExplosion" parent="." instance=ExtResource( 5 )]
+script = null
 
 [node name="DestroySound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
