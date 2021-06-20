@@ -38,7 +38,6 @@ explosion = ExtResource( 4 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="ExplosionController" index="1"]
-wait_time = 1.5
 one_shot = true
 autostart = true
 
