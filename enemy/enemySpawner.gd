@@ -2,6 +2,8 @@ extends Node2D
 
 export (PackedScene) var enemyScene
 
+export var spawnInterval = 6
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,6 +19,7 @@ func spawnEnemy():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$spawnTimer.wait_time = spawnInterval
 	$spawnTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
