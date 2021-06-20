@@ -91,13 +91,13 @@ func hit_by_debris(healthDecrease):
 
 func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris")):
+		body.queue_free()
+		ouch_sound.play()
 		hit_by_debris(10)
-		body.queue_free()
-		ouch_sound.play()
 	elif (body.is_in_group("smallDebris")):
-		hit_by_debris(2)
 		body.queue_free()
 		ouch_sound.play()
+		hit_by_debris(2)
 
 
 func _on_gunCooldown_timeout():

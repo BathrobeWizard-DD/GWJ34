@@ -42,6 +42,12 @@ func _ready():
 
 func _on_Node2D_spawn_small_debris():
 	pass
-	
-func _on_gameover():
+
+func gameOver():
 	get_tree().change_scene("res://levels/game_over_menu.tscn")
+
+func _on_gameover():
+	gameOver()
+
+func _on_centerSatellite_died():
+	gameOver()

@@ -63,3 +63,4 @@ layer = 2
 
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
 [connection signal="died" from="playerChar" to="." method="_on_gameover"]
+[connection signal="died" from="centerSatellite" to="." method="_on_centerSatellite_died"]
