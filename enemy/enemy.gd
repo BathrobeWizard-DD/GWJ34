@@ -1,11 +1,7 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export (PackedScene) var enemyProjectileScene
+export(int) var MAX_HP = 3
 
 const death_effect = preload("res://enemy/AlienDeath.tscn")
 
@@ -18,6 +14,19 @@ var moveSpeed = 150
 var currentVelocity = Vector2.ZERO
 
 var score_mult = 4
+
+onready var lookup = [
+		Vector2.DOWN,
+		Vector2.LEFT + Vector2.DOWN,
+		Vector2.LEFT,
+		Vector2.UP + Vector2.LEFT,
+		Vector2.UP,
+		Vector2.RIGHT + Vector2.UP,
+		Vector2.RIGHT,
+		Vector2.DOWN + Vector2.RIGHT,
+]
+
+onready var sprite = $AnimatedSprite
 
 signal hit_by_projectile
 
@@ -52,7 +61,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var playerPosition = get_node("/root/Node2D/playerChar").position
+	var gun_dir = (playerPosition - position).normalized()
 	var angleToPlayer = get_angle_to(playerPosition)
+
+	var record_i = 0
+	var record_d = INF
+	for i in range(len(lookup)):
+		var dist = lookup[i].distance_to(gun_dir)
+		if dist < record_d:
+			record_i = i
+			record_d = dist
+	sprite.frame = record_i
+	$GunSprite.rotation = angleToPlayer
+	$GunSprite.flip_v = angleToPlayer > PI/2 || angleToPlayer < -PI/2
 
 func _physics_process(delta):
 	currentVelocity = position.direction_to(destinationVector) * moveSpeed
