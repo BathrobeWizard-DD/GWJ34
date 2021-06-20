@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/ui/options/back_main_menu_button.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/button.wav" type="AudioStream" id=2]
 
 [node name="BackMainMenuButton" type="Button"]
 margin_left = 20.0
@@ -8,5 +9,14 @@ margin_top = 20.0
 margin_right = 1004.0
 margin_bottom = 580.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="pressed" from="." to="." method="_on_MainMenuButton_pressed"]
+[node name="PressedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -3.0
+bus = "Sounds"
+
+[connection signal="button_down" from="." to="." method="_on_BackMainMenuButton_button_down"]
+[connection signal="finished" from="PressedSound" to="." method="_on_AudioStreamPlayer_finished"]

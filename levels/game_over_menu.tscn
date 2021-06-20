@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://levels/main_menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://testPlayerControls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ui/open_scene_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/background.png" type="Texture" id=4]
+[ext_resource path="res://levels/gameOverScore.gd" type="Script" id=5]
+
+[node name="GameOverScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -74.0
+margin_right = 60.0
+margin_bottom = 74.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverLabel" type="Label" parent="VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 16.0
+text = "Game Over"
+align = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 120.0
+margin_bottom = 52.0
+text = "Score: 9999999"
+align = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 72.0
+margin_right = 120.0
+margin_bottom = 100.0
+text = "Retry"
+scene = ExtResource( 2 )
+
+[node name="MainMenu" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 120.0
+margin_right = 120.0
+margin_bottom = 148.0
+text = "Main Menu"
+scene = ExtResource( 1 )

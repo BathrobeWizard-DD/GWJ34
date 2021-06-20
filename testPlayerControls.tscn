@@ -1,27 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://playerChar/playerChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://playerChar/playerProjectile/standardProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://playerChar/playerGunAim/gunCrosshairs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://testPlayerControls.gd" type="Script" id=4]
 [ext_resource path="res://rope/Rope.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sprites/background.png" type="Texture" id=6]
+[ext_resource path="res://src/scrolling_background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://centerSatellite/centerSatellite.tscn" type="PackedScene" id=7]
 [ext_resource path="res://debris/mediumDebrisManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://playerChar/playerHealth/playerHPBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/sounds/shoot_sound.wav" type="AudioStream" id=10]
+[ext_resource path="res://ScoreLabel.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
 gunProjectileScene = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 512.0
-margin_bottom = 512.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
 [node name="playerChar" parent="." instance=ExtResource( 1 )]
 position = Vector2( 256, 381 )
@@ -45,4 +40,27 @@ position = Vector2( 256, 256 )
 
 [node name="smallDebrisSpawner" type="Node2D" parent="."]
 
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -6.0
+bus = "Sounds"
+
+[node name="playerHPBar" parent="." instance=ExtResource( 9 )]
+layer = 6
+scale = Vector2( 0.5, 0.5 )
+transform = Transform2D( 0.5, 0, 0, 0.5, 0, 0 )
+
+[node name="ScoreLabel" parent="playerHPBar" instance=ExtResource( 11 )]
+margin_left = 816.0
+margin_top = 8.0
+margin_right = 916.0
+margin_bottom = 44.0
+
+[node name="Crosshair" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="playerGunAim" parent="Crosshair" instance=ExtResource( 3 )]
+
 [connection signal="spawn_small_debris" from="." to="." method="_on_Node2D_spawn_small_debris"]
+[connection signal="died" from="playerChar" to="." method="_on_gameover"]
+[connection signal="died" from="centerSatellite" to="." method="_on_centerSatellite_died"]

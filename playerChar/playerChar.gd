@@ -3,6 +3,11 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var MAX_HP = 50
+export(int) var playerHP = MAX_HP setget set_HP, get_HP
+
+signal died
+
 enum States {NoControl, Moving, Braking}
 export var maxSpeed = 200.0 # pixels per second
 export var accelerationScalar = 80 # pixels per second^2
@@ -10,6 +15,19 @@ export var brakeFactor = 10.0
 var directionVector = Vector2.ZERO
 var screen_size = Vector2.ZERO
 var currentState = null
+
+var readyToShoot = true
+
+signal firedProjectile
+
+onready var ouch_sound = $OuchSound
+
+
+func set_HP(inputHP):
+	playerHP = inputHP
+	
+func get_HP():
+	return playerHP
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,3 +81,31 @@ func _physics_process(_delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta):
 #	get_input()
+
+func hit_by_debris(healthDecrease):
+	var new_health = get_HP() - healthDecrease
+	if (new_health <= 0):
+		emit_signal("died")
+	set_HP(new_health)
+	get_node("/root/Node2D/playerHPBar").setHPValue(new_health)
+
+func _on_Area2D_body_entered(body):
+	if (body.is_in_group("mediumDebris")):
+		body.queue_free()
+		ouch_sound.play()
+		hit_by_debris(10)
+	elif (body.is_in_group("smallDebris")):
+		body.queue_free()
+		ouch_sound.play()
+		hit_by_debris(2)
+
+
+func _on_gunCooldown_timeout():
+	readyToShoot = true
+	pass # Replace with function body.
+
+
+func _on_playerChar_firedProjectile():
+	readyToShoot = false
+	$gunCooldown.start()
+	pass # Replace with function body.

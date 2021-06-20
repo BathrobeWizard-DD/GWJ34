@@ -3,6 +3,8 @@ extends RigidBody2D
 export var min_speed = 150.0
 export var max_speed = 250.0
 
+export(int) var score_mult = 2
+
 signal hit_by_projectile
 
 var collisionExtents = [
@@ -20,13 +22,10 @@ var collisionExtents = [
 	Vector2(8.82, 5.288),
 ]
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	contact_monitor = true
+	contacts_reported = 1
 	add_to_group("smallDebris")
 	var frame_count = $AnimatedSprite.get_sprite_frames().get_frame_count("default")
 	var chosen_frame_number = (randi() % frame_count)
@@ -35,9 +34,11 @@ func _ready():
 	$CollisionShape2D.shape.extents = extents_properties
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _destroy():
+	$AnimatedSprite.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$DebrisExplosion.set_emitting(true)
+	$DestroySound.play()
 
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -45,9 +46,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_debris_body_entered(body):
-	pass
+	if (body.name == "centerSatellite"):
+		body.emit_signal("hit_by_debris", 2)
+		_destroy()
 
 
 func _on_debris_hit_by_projectile(projVelocity):
+	_destroy()
+
+
+func _on_DestroySound_finished() -> void:
 	queue_free()
-	pass # Replace with function body.
