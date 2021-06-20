@@ -22,16 +22,16 @@ tracks/0/keys = {
 }
 
 [node name="GrenadeCooldown" type="Control"]
-margin_right = 512.0
-margin_bottom = 512.0
+margin_right = 237.0
+margin_bottom = 33.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Box" type="HBoxContainer" parent="."]
-margin_right = 512.0
-margin_bottom = 512.0
+margin_right = 236.0
+margin_bottom = 32.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -39,7 +39,7 @@ __meta__ = {
 
 [node name="Texture" type="TextureRect" parent="Box"]
 margin_right = 32.0
-margin_bottom = 512.0
+margin_bottom = 32.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,7 +48,7 @@ __meta__ = {
 [node name="Progress" type="TextureProgress" parent="Box"]
 margin_left = 32.0
 margin_right = 236.0
-margin_bottom = 512.0
+margin_bottom = 32.0
 value = 69.0
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
