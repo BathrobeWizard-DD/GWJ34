@@ -24,7 +24,6 @@ onready var lookup = [
 
 func _process(_delta):
 #	if global_position != previous_pos:
-	var movedir = global_position.direction_to(previous_pos)
 	previous_pos = global_position
 
 	var gun_dir = (get_global_mouse_position() - global_position).normalized()
