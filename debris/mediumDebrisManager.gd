@@ -36,7 +36,7 @@ func spawnMediumDebris(debris_given = null, position_given = null, velocity_give
 		velocity = Vector2(rand_range(debrisPiece.min_speed, debrisPiece.max_speed), 0)
 		debrisPiece.linear_velocity = velocity.rotated(angle)
 	else:
-		debrisPiece.linear_velocity = velocity_given.rotated(angle)
+		debrisPiece.linear_velocity = Vector2(velocity_given, 0).rotated(angle)
 	
 	mediumDebrisInstances.append(debrisPiece)
 	add_child(debrisPiece)

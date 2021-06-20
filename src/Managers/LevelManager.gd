@@ -6,9 +6,9 @@ export var debris_frequecy_change_rate = 20
 export var enemy_frequecy_change_rate = 30
 export var debris_frequecy_change = .2
 export var enemy_frequecy_change = .5
+export var max_wave_debris_amount = 8
 var debris_scene_dictionary = {"medium_debris": "res://debris/mediumDebris.tscn", "small_debris": "res://debris/smallDebris.tscn"}
-var spawn_table = {0: {"time_interval": 1.0, "enemies": {1: {"type": "res://debris/mediumDebris.tscn", "position": 0.3, "velocity": null, "angle": null},
-															2: {"type": "res://debris/mediumDebris.tscn", "position": 0.35, "velocity": null, "angle": null}}}}
+var spawn_table = {"type": "res://debris/mediumDebris.tscn", "amount": 2.0, "velocity": 150, "angle": null}
 var wave = 0
 var debri_manager
 
@@ -16,22 +16,22 @@ signal DebrisWave(toggle)
 signal EnemyFrequency(frequecy_change)
 signal DebrisFrequency(frequecy_change)
 
-func _ready():
+
+func _call_wave():
+	print("pause")
+	emit_signal("DebrisWave", true)
+	get_node("ToggleDebrisTimer").start(debris_pause_time)
+	var spawn_position_increment = 1.0/spawn_table["amount"]
+	print(spawn_table["amount"])
+	for enemy in spawn_table["amount"]:
+		debri_manager.spawnMediumDebris(spawn_table["type"],enemy * spawn_position_increment,spawn_table["velocity"], spawn_table["angle"])
+	if spawn_table["amount"] < max_wave_debris_amount:
+		spawn_table["amount"] += 1
+
+func _on_start():
 	get_node("EnemyFrequencyTimer").start(enemy_frequecy_change_rate)
 	get_node("DebrisFrequencyTimer").start(debris_frequecy_change_rate)
 	get_node("WaveTimer").start(debris_wave_fequency)
-
-func _call_wave():
-	emit_signal("DebrisWave", true)
-	get_node("ToggleDebrisTimer").start(debris_pause_time)
-	var dict_temp = spawn_table[wave]["enemies"]
-	for enemy in spawn_table[wave]["enemies"]:
-		debri_manager.spawnMediumDebris(dict_temp[enemy]["type"],dict_temp[enemy]["position"],dict_temp[enemy]["velocity"],dict_temp[enemy]["angle"])
-
-
-func _on_start():
-	#setup_wave_timer()
-	pass
 
 func _on_EnemyFrequencyTimer_timeout():
 	emit_signal("EnemyFrequency", enemy_frequecy_change)

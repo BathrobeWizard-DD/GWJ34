@@ -4,6 +4,7 @@
 
 [node name="EnemyWaveManager" type="Node"]
 script = ExtResource( 1 )
+debris_wave_fequency = 6
 debris_frequecy_change_rate = 15
 
 [node name="WaveTimer" type="Timer" parent="."]
