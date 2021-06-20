@@ -70,7 +70,7 @@ frames = SubResource( 10 )
 frame = 6
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 2.1
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )

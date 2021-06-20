@@ -47,7 +47,6 @@ func fireProjectile(targetPosition):
 func _ready():
 	add_to_group("enemy")
 	var randomPosition = newRandPositionWithinViewport()
-	$shootTimer.start()
 	set_destination(randomPosition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
