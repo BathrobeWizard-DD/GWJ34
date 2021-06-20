@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var projSpeed = 500
+export(int) var projSpeed = 500
 var projVelocity = Vector2.ZERO
 var angleThreshold = PI / 2
 
@@ -36,10 +36,16 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris") or body.is_in_group("smallDebris")):
+		for child in get_children():
+			if child.name == "ExplosionController":
+				child.explode()
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile", projVelocity)
 		queue_free()
 	elif (body.is_in_group("enemy")):
+		for child in get_children():
+			if child.name == "ExplosionController":
+				child.explode()
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile")
 		queue_free()

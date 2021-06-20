@@ -12,15 +12,19 @@ enum States {NoControl, Moving, Braking}
 export var maxSpeed = 200.0 # pixels per second
 export var accelerationScalar = 80 # pixels per second^2
 export var brakeFactor = 10.0
+export var gun = "blaster"
 var directionVector = Vector2.ZERO
 var screen_size = Vector2.ZERO
 var currentState = null
 
 var readyToShoot = true
+var readyToNade = true
 
 signal firedProjectile
 
 onready var ouch_sound = $OuchSound
+onready var gunCooldown = $gunCooldown
+onready var grenadeCooldown = $grenadeCooldown
 
 
 func set_HP(inputHP):
@@ -38,29 +42,26 @@ func _ready():
 func get_input():
 	directionVector = Vector2.ZERO
 	var directionPressed = false
+
+	# Doing it like this allows for moving diagonally
+	# and for opposing directions to cancel each other out.
+	if Input.is_action_pressed("move_right"):
+		directionVector.x += 1
+		directionPressed = true
+	if Input.is_action_pressed("move_left"):
+		directionVector.x -= 1
+		directionPressed = true
+	if Input.is_action_pressed("move_down"):
+		directionVector.y += 1
+		directionPressed = true
+	if Input.is_action_pressed("move_up"):
+		directionVector.y -= 1
+		directionPressed = true
 	
-	if Input.is_action_pressed("click_rightbutton"):
-		currentState = States.Braking
+	if (directionPressed):
+		currentState = States.Moving
 	else:
-		# Doing it like this allows for moving diagonally
-		# and for opposing directions to cancel each other out.
-		if Input.is_action_pressed("move_right"):
-			directionVector.x += 1
-			directionPressed = true
-		if Input.is_action_pressed("move_left"):
-			directionVector.x -= 1
-			directionPressed = true
-		if Input.is_action_pressed("move_down"):
-			directionVector.y += 1
-			directionPressed = true
-		if Input.is_action_pressed("move_up"):
-			directionVector.y -= 1
-			directionPressed = true
-		
-		if (directionPressed):
-			currentState = States.Moving
-		else:
-			currentState = States.NoControl
+		currentState = States.NoControl
 
 func _integrate_forces(state):
 	pass
@@ -77,6 +78,14 @@ func _physics_process(_delta):
 			apply_central_impulse(finalAccel)
 		States.NoControl:
 			set_linear_damp(0.0)
+			
+	match gun:
+		"blaster":
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/gun.png")
+		"launcher":
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/launcher.png")
+		_:
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/gun.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta):
@@ -106,10 +115,16 @@ func _on_Area2D_body_entered(body):
 
 func _on_gunCooldown_timeout():
 	readyToShoot = true
-	pass # Replace with function body.
 
 
 func _on_playerChar_firedProjectile():
 	readyToShoot = false
-	$gunCooldown.start()
-	pass # Replace with function body.
+	gunCooldown.start()
+
+
+func _on_grenadeCooldown_timeout():
+	readyToNade = true
+
+func launch_grenade():
+	readyToNade = false
+	grenadeCooldown.start()

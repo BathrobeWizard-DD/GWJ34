@@ -7,9 +7,12 @@ margin_left = 62.0
 margin_right = 340.0
 margin_bottom = 472.0
 custom_constants/separation = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_right = 278.0
+margin_right = 286.0
 margin_bottom = 472.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
@@ -41,7 +44,7 @@ action = "move_up"
 
 [node name="MoveDown" type="HBoxContainer" parent="GridContainer"]
 margin_left = 142.0
-margin_right = 278.0
+margin_right = 286.0
 margin_bottom = 28.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,7 +87,7 @@ action = "move_left"
 [node name="MoveRight" type="HBoxContainer" parent="GridContainer"]
 margin_left = 142.0
 margin_top = 38.0
-margin_right = 278.0
+margin_right = 286.0
 margin_bottom = 66.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,7 +130,7 @@ action = "click_leftbutton"
 [node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer"]
 margin_left = 142.0
 margin_top = 76.0
-margin_right = 278.0
+margin_right = 286.0
 margin_bottom = 104.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -135,13 +138,13 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GridContainer/HBoxContainer2"]
 margin_top = 6.0
-margin_right = 44.0
+margin_right = 52.0
 margin_bottom = 22.0
-text = "Brake:"
+text = "Rocket:"
 
 [node name="RebindableAction" parent="GridContainer/HBoxContainer2" instance=ExtResource( 1 )]
-margin_left = 48.0
-margin_right = 136.0
+margin_left = 56.0
+margin_right = 144.0
 margin_bottom = 28.0
 text = "Mouse right"
 action = "click_rightbutton"
