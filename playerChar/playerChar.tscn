@@ -19,6 +19,7 @@ maxSpeed = 100.0
 accelerationScalar = 25
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
@@ -39,5 +40,6 @@ attenuation = 0.366021
 bus = "Sounds"
 
 [connection signal="firedProjectile" from="." to="." method="_on_playerChar_firedProjectile"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="gunCooldown" to="." method="_on_gunCooldown_timeout"]

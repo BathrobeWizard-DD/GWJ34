@@ -33,7 +33,7 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	add_child(load("res://carrotHealth/CarrotHealth.tscn").instance())
 	EnemyWaveManager.debri_manager = get_node("mediumDebrisManager")
 	self.connect("level_start", EnemyWaveManager, "_on_start")
 	EnemyWaveManager.connect("DebrisFrequency", get_node("mediumDebrisManager"), "_on_frquency_change")

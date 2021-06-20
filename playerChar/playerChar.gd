@@ -103,13 +103,19 @@ func _on_Area2D_body_entered(body):
 		ouch_sound.play()
 		hit_by_debris(2)
 
-
 func _on_gunCooldown_timeout():
 	readyToShoot = true
 	pass # Replace with function body.
-
 
 func _on_playerChar_firedProjectile():
 	readyToShoot = false
 	$gunCooldown.start()
 	pass # Replace with function body.
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_parent().name == "Carrot":
+		if get_HP() < 46:
+			set_HP(get_HP() + 5)
+		else:
+			set_HP(MAX_HP)
