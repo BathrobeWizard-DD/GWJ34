@@ -7,6 +7,8 @@ extends KinematicBody2D
 var MAX_HP = 30
 export(int) var enemyHP = MAX_HP setget set_HP, get_HP
 
+export (PackedScene) var enemyProjectileScene
+
 var destinationVector = Vector2.ZERO
 var screenOffset = 20
 
@@ -29,14 +31,25 @@ func newRandPositionWithinViewport():
 		randf() * (screenSize.y - screenOffset) + (screenOffset/2)
 	)
 
+func fireProjectile(targetPosition):
+	var enemyProjectile = enemyProjectileScene.instance()
+	enemyProjectile.shootProjectile(
+		position,
+		position.direction_to(targetPosition).normalized()
+	)
+	
+	get_node("/root/Node2D").call_deferred('add_child', enemyProjectile)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var randomPosition = newRandPositionWithinViewport()
+	$shootTimer.start()
 	set_destination(randomPosition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var playerPosition = get_node("/root/Node2D/playerChar").position
+	var angleToPlayer = get_angle_to(playerPosition)
 
 func _physics_process(delta):
 	currentVelocity = position.direction_to(destinationVector) * moveSpeed
@@ -49,7 +62,11 @@ func _physics_process(delta):
 
 func _on_debrisDetectArea_body_entered(body):
 	if (body.is_in_group("mediumDebris")):
-		print("Med. debris - shoot it.")
+		fireProjectile(body.position)
 	elif (body.is_in_group("smallDebris")):
-		print("Small debris - shoot it.")
+		fireProjectile(body.position)
 	pass # Replace with function body.
+
+
+func _on_shootTimer_timeout():
+	fireProjectile(get_node("/root/Node2D/playerChar").position)

@@ -19,6 +19,6 @@ curve = SubResource( 1 )
 position = Vector2( -8, -8 )
 
 [node name="spawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 6.0
 
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawnTimer_timeout"]
