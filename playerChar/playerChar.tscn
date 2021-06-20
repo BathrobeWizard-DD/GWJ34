@@ -17,7 +17,6 @@ gravity_scale = 0.0
 script = ExtResource( 2 )
 maxSpeed = 100.0
 accelerationScalar = 25
-gun = "launcher"
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -28,6 +27,9 @@ shape = SubResource( 1 )
 shape = SubResource( 1 )
 
 [node name="PlayerSprite" parent="." instance=ExtResource( 1 )]
+
+[node name="grenadeCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="gunCooldown" type="Timer" parent="."]
 wait_time = 0.3
@@ -41,4 +43,5 @@ bus = "Sounds"
 
 [connection signal="firedProjectile" from="." to="." method="_on_playerChar_firedProjectile"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="grenadeCooldown" to="." method="_on_grenadeCooldown_timeout"]
 [connection signal="timeout" from="gunCooldown" to="." method="_on_gunCooldown_timeout"]

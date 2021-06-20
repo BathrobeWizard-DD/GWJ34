@@ -9,6 +9,8 @@ var _random = RandomNumberGenerator.new()
 onready var _shoot_sound = $ShootSound
 onready var player = $playerChar
 
+onready var grenadeCooldown = $playerHPBar/GrenadeCooldown
+
 func _input(event):
 	pass
 
@@ -23,10 +25,8 @@ func playerFireGun():
 			projectile = "standard"
 			
 	if (player.readyToShoot):
-		var gunProjectile = load("res://playerChar/playerProjectile/" + projectile + "Projectile.tscn").instance()
+		var gunProjectile = load("res://playerChar/playerProjectile/standardProjectile.tscn").instance()
 		call_deferred('add_child', gunProjectile)
-		if projectile == "grenade":
-			gunProjectile.get_node("ExplosionController").connect("exploded", self, "on_grenade_exploded")
 		gunProjectile.shootProjectile(
 			player.position,
 			player.position.direction_to(get_global_mouse_position()),
@@ -36,9 +36,28 @@ func playerFireGun():
 		_shoot_sound.play()
 		player.emit_signal("firedProjectile")
 
+func playerFireNade():
+	if player.readyToNade:
+		var grenade = load("res://playerChar/playerProjectile/grenadeProjectile.tscn").instance()
+		call_deferred('add_child', grenade)
+		grenade.get_node("ExplosionController").connect("exploded", self, "on_grenade_exploded")
+		grenade.shootProjectile(
+			player.position,
+			player.position.direction_to(get_global_mouse_position()),
+			player.get_linear_velocity()
+		)
+		_shoot_sound.set_pitch_scale(1 + _random.randf_range(-PITCH_SCALE_DIFFERENCE, PITCH_SCALE_DIFFERENCE))
+		_shoot_sound.play()
+		player.launch_grenade()
+	else:
+		grenadeCooldown.blink()
+
 func _process(delta):
+	grenadeCooldown.set_value(100 - (player.grenadeCooldown.time_left / player.grenadeCooldown.wait_time * 100))
 	if Input.is_action_pressed("click_leftbutton"):
 		playerFireGun()
+	elif Input.is_action_pressed("click_rightbutton"):
+		playerFireNade()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

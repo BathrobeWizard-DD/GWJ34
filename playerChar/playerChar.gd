@@ -18,11 +18,13 @@ var screen_size = Vector2.ZERO
 var currentState = null
 
 var readyToShoot = true
+var readyToNade = true
 
 signal firedProjectile
 
 onready var ouch_sound = $OuchSound
 onready var gunCooldown = $gunCooldown
+onready var grenadeCooldown = $grenadeCooldown
 
 
 func set_HP(inputHP):
@@ -40,29 +42,26 @@ func _ready():
 func get_input():
 	directionVector = Vector2.ZERO
 	var directionPressed = false
+
+	# Doing it like this allows for moving diagonally
+	# and for opposing directions to cancel each other out.
+	if Input.is_action_pressed("move_right"):
+		directionVector.x += 1
+		directionPressed = true
+	if Input.is_action_pressed("move_left"):
+		directionVector.x -= 1
+		directionPressed = true
+	if Input.is_action_pressed("move_down"):
+		directionVector.y += 1
+		directionPressed = true
+	if Input.is_action_pressed("move_up"):
+		directionVector.y -= 1
+		directionPressed = true
 	
-	if Input.is_action_pressed("click_rightbutton"):
-		currentState = States.Braking
+	if (directionPressed):
+		currentState = States.Moving
 	else:
-		# Doing it like this allows for moving diagonally
-		# and for opposing directions to cancel each other out.
-		if Input.is_action_pressed("move_right"):
-			directionVector.x += 1
-			directionPressed = true
-		if Input.is_action_pressed("move_left"):
-			directionVector.x -= 1
-			directionPressed = true
-		if Input.is_action_pressed("move_down"):
-			directionVector.y += 1
-			directionPressed = true
-		if Input.is_action_pressed("move_up"):
-			directionVector.y -= 1
-			directionPressed = true
-		
-		if (directionPressed):
-			currentState = States.Moving
-		else:
-			currentState = States.NoControl
+		currentState = States.NoControl
 
 func _integrate_forces(state):
 	pass
@@ -120,5 +119,12 @@ func _on_gunCooldown_timeout():
 
 func _on_playerChar_firedProjectile():
 	readyToShoot = false
-	if gun == "blaster":
-		gunCooldown.start()
+	gunCooldown.start()
+
+
+func _on_grenadeCooldown_timeout():
+	readyToNade = true
+
+func launch_grenade():
+	readyToNade = false
+	grenadeCooldown.start()

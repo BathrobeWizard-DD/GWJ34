@@ -4,10 +4,7 @@ export(PackedScene) var explosion
 signal exploded
 
 onready var radius = $Radius
-
-func _input(event):
-	if event.is_action_released("click_leftbutton"):
-		explode()
+onready var timer = $Timer
 
 func explode():
 	var bodies = radius.get_overlapping_bodies()
@@ -22,3 +19,7 @@ func explode():
 	explosion_particles.emitting = true
 	emit_signal("exploded")
 	get_parent().queue_free()
+
+
+func _on_Timer_timeout():
+	explode()
