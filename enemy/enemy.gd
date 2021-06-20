@@ -4,8 +4,6 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var MAX_HP = 30
-export(int) var enemyHP = MAX_HP setget set_HP, get_HP
 
 export (PackedScene) var enemyProjectileScene
 
@@ -15,11 +13,9 @@ var screenOffset = 20
 var moveSpeed = 150
 var currentVelocity = Vector2.ZERO
 
-func set_HP(inputHP):
-	enemyHP = inputHP
+var score_mult = 4
 
-func get_HP():
-	return enemyHP
+signal hit_by_projectile
 
 func set_destination(inputVector):
 	destinationVector = inputVector
@@ -42,6 +38,7 @@ func fireProjectile(targetPosition):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("enemy")
 	var randomPosition = newRandPositionWithinViewport()
 	$shootTimer.start()
 	set_destination(randomPosition)
@@ -70,3 +67,7 @@ func _on_debrisDetectArea_body_entered(body):
 
 func _on_shootTimer_timeout():
 	fireProjectile(get_node("/root/Node2D/playerChar").position)
+
+
+func _on_enemy_hit_by_projectile():
+	queue_free()

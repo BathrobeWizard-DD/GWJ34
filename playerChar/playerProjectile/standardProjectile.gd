@@ -10,6 +10,7 @@ var angleThreshold = PI / 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("player_projectile")
 	pass # Replace with function body.
 
 func shootProjectile(startPos, directionVector, shooterVelocity):
@@ -37,4 +38,8 @@ func _on_Area2D_body_entered(body):
 	if (body.is_in_group("mediumDebris") or body.is_in_group("smallDebris")):
 		Score.score += 100 * body.score_mult
 		body.emit_signal("hit_by_projectile", projVelocity)
+		queue_free()
+	elif (body.is_in_group("enemy")):
+		Score.score += 100 * body.score_mult
+		body.emit_signal("hit_by_projectile")
 		queue_free()
