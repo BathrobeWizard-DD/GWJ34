@@ -30,6 +30,7 @@ hue_variation = 0.1
 hue_variation_random = 0.5
 
 [node name="Explosion" type="Particles2D"]
+scale = Vector2( 1.02222, 1.16049 )
 emitting = false
 amount = 200
 lifetime = 3.0

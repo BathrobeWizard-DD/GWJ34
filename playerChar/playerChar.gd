@@ -79,6 +79,14 @@ func _physics_process(_delta):
 			apply_central_impulse(finalAccel)
 		States.NoControl:
 			set_linear_damp(0.0)
+			
+	match gun:
+		"blaster":
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/gun.png")
+		"launcher":
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/launcher.png")
+		_:
+			$PlayerSprite/Gun.texture = load("res://assets/sprites/gun.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(_delta):
